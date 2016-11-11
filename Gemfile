@@ -46,6 +46,7 @@ end
 group :test do
   gem 'cucumber-rails', require: false
   gem 'selenium-webdriver'
+  gem 'database_cleaner'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
