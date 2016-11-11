@@ -57,7 +57,7 @@ development:
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
-test:
+test: &test
   <<: *default
   database: TeachMe_test
   username: TeachMe
@@ -90,3 +90,6 @@ production:
   username: TeachMe
   # password: <%= ENV['TEACHME_DATABASE_PASSWORD'] %>
   password: endless
+
+cucumber:
+  <<: *test
