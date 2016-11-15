@@ -1,0 +1,9 @@
+<%= bootstrap_form_for(@user) do |f| %>
+  <%= f.text_field :name %>
+  <%= f.email_field :email, readonly: true %>
+  <%= f.text_field :major %>
+  <%= f.text_field :year %>
+  <%= f.text_field :study_spot %>
+
+  <%= f.submit "Sign Up" %>
+<% end %>
