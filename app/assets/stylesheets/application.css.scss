@@ -51,7 +51,7 @@ a:hover {
 /* Custom Design */
 
 #banner {
-  background-image: url("libraryblur.jpg");
+  background-image: image-url("libraryblur.jpg");
   background-size: cover;
   padding: 150px 0px;
   text-align: center;
@@ -59,8 +59,6 @@ a:hover {
 }
 
 #banner h1 {
-  font-family: 'Graduate', cursive;
-  font-size: 100px;
   word-wrap: break-word;
   color: white;
 }
@@ -69,23 +67,12 @@ a:hover {
   font-size: 15px;
 }
 
-#signinlink {
-  text-decoration: none;
-  color:white;
-}
-
-#signinlink:hover {
-  text-decoration: none;
-  color: #5FBFF9;
-}
-
 .features {
   margin-top: 40px;
 }
 
 .description {
   color: white;
-  font-family: 'Montserrat', sans-serif;
   font-size: 30px;
 }
 
@@ -94,16 +81,6 @@ a:hover {
   border-radius: 10px;
   padding: 0px;
   color: white;
-}
-
-.feat h2 {
-  font-family: 'Graduate', cursive;
-  font-size: 25px;  
-}
-
-.feat p {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 15px;
 }
 
 .logo {
