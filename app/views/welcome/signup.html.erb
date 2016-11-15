@@ -2,8 +2,8 @@
   <%= f.text_field :name %>
   <%= f.email_field :email, readonly: true %>
   <%= f.text_field :major %>
-  <%= f.text_field :year %>
+  <%= f.text_field :year "Graduation Year"%>
   <%= f.text_field :study_spot %>
 
-  <%= f.submit "Sign Up" %>
+  <%= f.submit "Sign Up",class: "btn btn-success" %>
 <% end %>
