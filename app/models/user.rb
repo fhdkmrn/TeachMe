@@ -12,7 +12,15 @@ class User < ActiveRecord::Base
     end
   end
   # validates :name, :presence => true
-  # validates :year, :presence => true, 
+  # validates :year, :presence => true,
   #         :numericality => true
   # validates :major, :presence => true
+
+  def self.text_search(query)
+    if query.present?
+      where("name ilike :q", q: "%#{query}%")
+    else
+      User.none
+    end
+  end
 end
