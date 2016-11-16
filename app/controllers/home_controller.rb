@@ -1,11 +1,13 @@
 class HomeController < ApplicationController
   def show
-  	user = User.find_by_id(session[:user_id])
-  	if user != nil
-  		if user.year == nil
-  			@user = User.find_by_id(session[:user_id])
 
-  			render 'create'
+  	user = User.find_by_id(session[:user_id])
+
+  	if user != nil
+  		if user.year == nil or user.major == ""
+  			@user = User.find_by_id(session[:user_id])
+  			session[:user_id] = nil
+
   		else
   			@user = User.find_by_id(session[:user_id])
   			redirect_to '/dashboard'
@@ -17,7 +19,11 @@ class HomeController < ApplicationController
 	@user = User.find_by_id(session[:user_id])
 	if @user.year != nil
 		redirect_to '/dashboard'
+	end 
+	if @user == nil
+		redirect_to '/'
 	end
+
   end
 
   def new

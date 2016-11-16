@@ -1,7 +1,6 @@
 class SessionsController < ApplicationController
 
   def create
-  	@j = false
     user = User.from_omniauth(env["omniauth.auth"])
     session[:user_id] = user.id
     if user.year == nil
