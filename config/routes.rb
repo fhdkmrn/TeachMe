@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
+  get 'user/show'
+
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')
   get 'signout', to: 'sessions#destroy', as: 'signout'
+  get 'signup', to: 'home#create', :as => :user
+  post 'signup', to: 'home#new'
+  get 'dashboard', to: 'user#dashboard'
  
   resources :sessions, only: [:create, :destroy]
   resource :home, only: [:show]

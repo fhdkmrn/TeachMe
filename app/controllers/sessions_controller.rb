@@ -1,9 +1,14 @@
 class SessionsController < ApplicationController
 
   def create
+  	@j = false
     user = User.from_omniauth(env["omniauth.auth"])
     session[:user_id] = user.id
-    redirect_to root_path
+    if user.year == nil
+    	redirect_to '/signup'
+	else 
+		redirect_to '/dashboard'
+	end
   end
  
   def destroy

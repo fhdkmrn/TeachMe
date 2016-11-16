@@ -11,4 +11,8 @@ class User < ActiveRecord::Base
       user.save!
     end
   end
+  # validates :name, :presence => true
+  # validates :year, :presence => true, 
+  #         :numericality => true
+  # validates :major, :presence => true
 end
