@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'signup', to: 'home#create', :as => :user
   post 'signup', to: 'home#new'
   get 'dashboard', to: 'user#dashboard', :as => :dashboard
+  get 'search', to: 'user#search', :as => :search
 
   resources :sessions, only: [:create, :destroy]
   resource :home, only: [:show]
