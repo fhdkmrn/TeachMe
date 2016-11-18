@@ -1,4 +1,4 @@
-file = File.open("classes/mcb", "rb")
+file = File.open("classes/math", "rb")
 content = file.read
 courses = content.split("\n\n")
 for course in courses
