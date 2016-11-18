@@ -8,7 +8,7 @@ for course in courses
 		course_number = key_content.split(" ")[1]
 		course_name = ""
 		for i in key_content.split(" ")[2...key_content.split(" ").count]
-			if (!!(i =~ /\A[-+]?[0-9]+\z/)) or i.includes?(".")
+			if (!!(i =~ /\A[-+]?[0-9]+\z/)) or i.include?(".")
 				break
 			elsif i == nil
 
