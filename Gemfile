@@ -29,6 +29,10 @@ gem 'google-webfonts-rails'
 gem 'font-awesome-rails'
 gem 'bootstrap_form'
 gem 'jquery-ui-rails'
+
+group :production do
+  gem "rails_12factor"
+end
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
