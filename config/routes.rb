@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :courses
   get 'user/show'
 
   get 'auth/:provider/callback', to: 'sessions#create'

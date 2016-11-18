@@ -26,12 +26,12 @@ class HomeController < ApplicationController
 
   def new
   	user = User.find_by_id(session[:user_id])
-  	if user.update_attributes(user_params) and user.year != nil and user.major != ""
+  	if user.update_attributes(user_params)
   		redirect_to '/dashboard'
-  	else
-  		@user = User.find_by_id(session[:user_id])
+  	# else
+  	# 	@user = User.find_by_id(session[:user_id])
 
-  		render 'create'
+  	# 	render 'create'
   	end
   end
 
