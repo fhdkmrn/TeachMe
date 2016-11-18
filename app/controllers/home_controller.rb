@@ -1,13 +1,11 @@
 class HomeController < ApplicationController
   def show
-
   	user = User.find_by_id(session[:user_id])
 
   	if user != nil
   		if user.year == nil or user.major == ""
   			@user = User.find_by_id(session[:user_id])
   			session[:user_id] = nil
-
   		else
   			@user = User.find_by_id(session[:user_id])
   			redirect_to '/dashboard'
@@ -16,13 +14,13 @@ class HomeController < ApplicationController
   end
 
   def create
-	@user = User.find_by_id(session[:user_id])
-	if @user.year != nil
-		redirect_to '/dashboard'
-	end 
-	if @user == nil
-		redirect_to '/'
-	end
+  	@user = User.find_by_id(session[:user_id])
+  	if @user.year != nil
+  		redirect_to '/dashboard'
+  	end
+  	if @user == nil
+  		redirect_to '/'
+  	end
 
   end
 
@@ -38,7 +36,7 @@ class HomeController < ApplicationController
   end
 
 
-  private 
+  private
   def user_params
 	params.require(:user).permit(:name, :email, :major, :year, :study_spot)
   end

@@ -7,13 +7,14 @@ Rails.application.routes.draw do
   get 'signout', to: 'sessions#destroy', as: 'signout'
   get 'signup', to: 'home#create', :as => :user
   post 'signup', to: 'home#new'
-  get 'dashboard', to: 'user#dashboard'
- 
+  get 'dashboard', to: 'application#dashboard', :as => :dashboard
+  get 'search', to: 'application#search', :as => :search
+
   resources :sessions, only: [:create, :destroy]
   resource :home, only: [:show]
- 
+
   root to: "home#show"
-  
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
