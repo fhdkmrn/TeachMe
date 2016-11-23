@@ -1,6 +1,10 @@
 <script>
+if (typeof jQuery != 'undefined') {
+  // jQuery is loaded => print the version
+  alert(jQuery.fn.jquery);
+}
+
   $(function() {
-      alert("HELP");
       $( "#books-search-txt" ).autocomplete({
         source: "/search",
         appendTo: '#books-search-results',
