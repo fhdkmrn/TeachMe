@@ -29,6 +29,8 @@ gem "omniauth-google-oauth2", "~> 0.2.1"
 gem 'google-webfonts-rails'
 gem 'font-awesome-rails'
 gem 'bootstrap_form'
+gem 'therubyracer'
+gem 'execjs'
 
 group :production do
   gem "rails_12factor"
