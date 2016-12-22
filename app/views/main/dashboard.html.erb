@@ -11,11 +11,16 @@
     	<%= stylesheet_link_tag    "main", media: "all", "data-turbolinks-track" => true %>
 		<link rel="stylesheet" href="style.css">		
 	</head>
+
 <body>
-<h1>Name: <strong><%= @user.name %></strong></h1>
+<%= render 'layouts/header' %>
+<h5>Name: <strong><%= @user.name %></strong></h5>
+<h5>Major: <strong><%= @user.major %></strong></h5>
+<h5>Karma: <strong><%= @user.karma %></strong></h5>
+<h5>Study Spot: <strong><%= @user.study_spot %></strong></h5>
+
+
+
 <p>Find me in app/views/main/dashboard.html.erb</p>
-
-<%= render "search/searchbar" %>
 </body>
-
 </html>
