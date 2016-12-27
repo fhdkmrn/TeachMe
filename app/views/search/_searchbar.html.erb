@@ -3,32 +3,34 @@
 //   // jQuery is loaded => print the version
 //   alert(jQuery.fn.jquery);
 // }
-//
-//   $(function() {
-//       $( "#books-search-txt" ).autocomplete({
-//         source: "/search",
-//         appendTo: '#books-search-results',
-//         select: $.proxy(function(e, ui) {
-//              $("#books-search-txt").val(ui.item['department'] + " " + ui.item['course_no']);
-//              return false;
-//            }, this)
-//       }).autocomplete('instance')._renderItem = $.proxy(function(ul, item) {
-//           var markup = [
-//             '<span class="title">' + item['name'] + '</span>',
-//           ];
-//           return $('<li>')
-//             .append(markup.join(''))
-//             .appendTo(ul);
-//         }, this);
-//   });
+
+  $(function() {
+      $( "#books-search-txt" ).autocomplete({
+        source: "/search",
+        appendTo: '#books-search-results',
+
+        select: $.proxy(function(e, ui) {
+             $("#books-search-txt").val(ui.item['department'] + " " + ui.item['course_no']);
+             return false;
+           }, this)
+      }).autocomplete('instance')._renderItem = $.proxy(function(ul, item) {
+          var markup = [
+            // '<span class="title">' + item['department'] + " " + item['course_no'] + " " + item['name'] + '</span>',
+            '<span class="title">' + item['full_title'] +'</span>',
+
+          ];
+          return $('<li>')
+            .append(markup.join(''))
+            .appendTo(ul);
+        }, this);
+  });
 </script>
 
-<p id="demo">JavaScript can change HTML content.</p>
 
-<button type="button" id="buttonclickme">Click Me!</button>
 
 <div class="books-search">
-  <span>2</span>
   <input type="text" id="books-search-txt" autofocus>
   <div class="results" id="books-search-results"></div>
 </div>
+<button type="button" id="buttonclickme">Search</button>
+

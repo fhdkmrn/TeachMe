@@ -23,7 +23,7 @@ default: &default
 
 development:
   <<: *default
-  database: TeachMe_development
+  database: teachme_development
   username: teachme
   password: endless
   host: localhost
@@ -59,7 +59,7 @@ development:
 # Do not set this db to the same as development or production.
 test: &test
   <<: *default
-  database: TeachMe_test
+  database: teachme_test
   username: teachme
   password: endless
   host: localhost
@@ -86,7 +86,7 @@ test: &test
 #
 production:
   <<: *default
-  database: TeachMe_production
+  database: teachme_production
   username: teachme
   # password: <%= ENV['TEACHME_DATABASE_PASSWORD'] %>
   password: endless

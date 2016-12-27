@@ -17,7 +17,8 @@ gem 'coffee-script-source', '1.8.0'
 # gem 'therubyracer', platforms: :ruby
 gem 'bootstrap-sass', '3.2.0.0'
 # Use jquery as the JavaScript library
-gem 'jquery-rails'
+gem 'jquery-ui-rails', '~> 5.0.0'
+gem 'jquery-rails', '~> 2.3.0'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -28,7 +29,8 @@ gem "omniauth-google-oauth2", "~> 0.2.1"
 gem 'google-webfonts-rails'
 gem 'font-awesome-rails'
 gem 'bootstrap_form'
-gem 'jquery-ui-rails'
+gem 'therubyracer'
+gem 'execjs'
 
 group :production do
   gem "rails_12factor"

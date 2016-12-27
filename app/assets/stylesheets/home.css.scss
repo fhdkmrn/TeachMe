@@ -1,3 +1,6 @@
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
@@ -10,81 +13,77 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
-
-
+ *= require_tree .
+ *= require_self
+ *= require jquery-ui
  */
+
 /* Font and Color */
-/* line 19, /Users/Nisha/cs_stuff/TeachMe/app/assets/stylesheets/application.css.scss */
+@import "bootstrap";
+@import "font-awesome";
 body {
-  background: url(img/library-blur.jpg);
-  color: #141414;
+  background: #C3C6CF;
+  color: rgb(20,20,20);
   font-family: 'Montserrat', sans-serif;
   margin: 0 0 0 0;
 }
 
-/* line 26, /Users/Nisha/cs_stuff/TeachMe/app/assets/stylesheets/application.css.scss */
 h1 {
   font-family: 'Graduate', cursive;
   font-size: 100px;
   color: #D5B942;
 }
 
-/* line 32, /Users/Nisha/cs_stuff/TeachMe/app/assets/stylesheets/application.css.scss */
 h2 {
   font-family: 'Graduate', cursive;
   font-size: 25px;
 }
 
-/* line 37, /Users/Nisha/cs_stuff/TeachMe/app/assets/stylesheets/application.css.scss */
+
+
+
 p {
   font-size: 15px;
 }
-
-/* line 40, /Users/Nisha/cs_stuff/TeachMe/app/assets/stylesheets/application.css.scss */
 a {
   text-decoration: none;
-  color: white;
+  color:white;
 }
 
-/* line 45, /Users/Nisha/cs_stuff/TeachMe/app/assets/stylesheets/application.css.scss */
 a:hover {
   text-decoration: none;
   color: #5FBFF9;
 }
 
 /* Custom Design */
-/* line 52, /Users/Nisha/cs_stuff/TeachMe/app/assets/stylesheets/application.css.scss */
+
 #banner {
-  background: url(img/library-blur.jpg);
+  background-image: image-url("libraryblur.jpg");
+  background-repeat: no-repeat;
   background-size: cover;
   padding: 150px 0px;
   text-align: center;
   color: white;
 }
 
-/* line 60, /Users/Nisha/cs_stuff/TeachMe/app/assets/stylesheets/application.css.scss */
 #banner h1 {
   word-wrap: break-word;
   color: white;
 }
 
-/* line 65, /Users/Nisha/cs_stuff/TeachMe/app/assets/stylesheets/application.css.scss */
 #signin {
   font-size: 15px;
 }
 
-/* line 69, /Users/Nisha/cs_stuff/TeachMe/app/assets/stylesheets/application.css.scss */
 .features {
   margin-top: 40px;
 }
 
-/* line 73, /Users/Nisha/cs_stuff/TeachMe/app/assets/stylesheets/application.css.scss */
 .description {
   color: white;
   font-size: 30px;
 }
 
-/* line 78, /Users/Nisha/cs_stuff/TeachMe/app/assets/stylesheets/application.css.scss */
 .feat {
   text-align: center;
   border-radius: 10px;
@@ -92,16 +91,22 @@ a:hover {
   color: white;
 }
 
-/* line 85, /Users/Nisha/cs_stuff/TeachMe/app/assets/stylesheets/application.css.scss */
 .logo {
   width: 40px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.5);
 }
 
-/* line 91, /Users/Nisha/cs_stuff/TeachMe/app/assets/stylesheets/application.css.scss */
 #footer {
   text-align: center;
   margin: 5px;
   color: black;
 }
+
+form{
+margin-top: 5%;
+margin-left: 25%;
+margin-right:25%;
+width: 50%;
+}
+
