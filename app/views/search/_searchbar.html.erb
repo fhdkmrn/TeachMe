@@ -15,9 +15,8 @@
            }, this)
       }).autocomplete('instance')._renderItem = $.proxy(function(ul, item) {
           var markup = [
-            // '<span class="title">' + item['department'] + " " + item['course_no'] + " " + item['name'] + '</span>',
-            '<span class="title">' + item['full_title'] +'</span>',
-
+            '<span class="title">' + item['department'] + " " + item['course_no'] + ": " + item['name'] + '</span>',
+            // '<span class="title">' + item['name'] +'</span>',
           ];
           return $('<li>')
             .append(markup.join(''))
@@ -33,4 +32,3 @@
   <div class="results" id="books-search-results"></div>
 </div>
 <button type="button" id="buttonclickme">Search</button>
-
