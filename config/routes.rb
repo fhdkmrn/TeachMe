@@ -15,6 +15,15 @@ Rails.application.routes.draw do
 
   root to: "home#show"
 
+  get 'new_request', to: 'requests#new', :as => :request 
+  post 'new_request', to: 'requests#create'
+  get 'requests', to: 'requests#show_all'
+  resources :requests
+  get 'request/:id', to: 'requests#show'
+  get 'course_requests/:id', to: 'requests#by_course'
+  get :send_acceptance_mail, to: 'requests#send_mail', as: :send_acceptance_mail
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
