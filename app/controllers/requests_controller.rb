@@ -46,15 +46,25 @@ class RequestsController < ApplicationController
   end
 
   def edit
+    @request = Request.find(params[:id])
   end
 
   def update
+    @request = Request.find(params[:id])
+    @request.update_attributes(request_params)
+    redirect_to request_path(@request.id)
   end
 
-  def delete
+
+
+  def destroy
+    @request = Request.find(params[:id])
+    @request.delete
+    redirect_to '/requests'
+
   end
 
-  def show_all
+  def index
     @user = User.find_by_id(session[:user_id])
     if @user == nil or @user.year == nil or @user.major == ""
       session[:user_id] = nil
@@ -63,8 +73,10 @@ class RequestsController < ApplicationController
       @requests = Request.all
     end
   end
-  def request_params
-    #params["request"]["topics"] = params["request"]["topics"].split(",")
-    params.require(:request).permit(:course, :description, :location, :duration, :need_help, :topics)
-  end
+
+  private 
+    def request_params
+      #params["request"]["topics"] = params["request"]["topics"].split(",")
+      params.require(:request).permit(:course, :description, :location, :duration, :need_help, :topics)
+    end
 end

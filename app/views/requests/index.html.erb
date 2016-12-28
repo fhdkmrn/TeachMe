@@ -13,4 +13,8 @@
 <% if request.expiration.future? %>
 <%= Course.find_by_id(request.course).name %> <%= request.description %> <%= User.find_by_id(request.user).name%> <%= request.expiration%> <
 <% end %>
+<%= link_to "Edit", edit_request_path(request.id), :class=> "btn btn-primary" %>
+
+<%= link_to "Delete", request_path(request.id), :method=> :delete, :class=> "btn btn-danger" %>
+<br/>
 <% end %>

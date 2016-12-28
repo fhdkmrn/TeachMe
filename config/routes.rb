@@ -15,11 +15,9 @@ Rails.application.routes.draw do
 
   root to: "home#show"
 
-  get 'new_request', to: 'requests#new', :as => :request 
-  post 'new_request', to: 'requests#create'
-  get 'requests', to: 'requests#show_all'
+  get 'requests', to: 'requests#index'
   resources :requests
-  get 'request/:id', to: 'requests#show'
+  get 'request/:id', to: 'requests#show', as: :request_path
   get 'course_requests/:id', to: 'requests#by_course'
   get :send_acceptance_mail, to: 'requests#send_mail', as: :send_acceptance_mail
 
