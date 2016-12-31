@@ -1,3 +1,17 @@
-<h1>Requests#show</h1>
-<p>Find me in app/views/requests/show.html.erb</p>
-<%= Course.find_by_id(@request.course).name %> <%= @request.description %> <%= User.find_by_id(@request.user).name%> <%= @request.expiration%> 
+<% if @request.accepted_by != nil%> 
+	Course: <%= Course.find_by_id(@request.course).name %> <br> Description: <%= @request.description %> <br> By:<%= User.find_by_id(@request.user).name%> 
+
+			Status: Accepted by <%= User.find_by_id(@request.accepted_by).name%>
+			Rating: <% if @request.rating == nil%>
+					Not rated yet
+					<% else%> <%= request.rating%>
+					<%end%>
+		<%elsif @request.expiration.future? %>
+	Course: <%= Course.find_by_id(@request.course).name %> <br> Description: <%= @request.description %> <br> By:<%= User.find_by_id(@request.user).name%> 
+
+		Status: Still searching
+		<%else%>
+	Course: <%= Course.find_by_id(@request.course).name %> <br> Description: <%= @request.description %> <br> By:<%= User.find_by_id(@request.user).name%> 
+
+		Status: Request expired. 
+		<%end%>

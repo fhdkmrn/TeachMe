@@ -35,10 +35,11 @@ class RequestsController < ApplicationController
     if @request
       @request.creation = Time.now
       @request.user = session[:user_id]
-      @request.expiration = Time.now + @request.duration.to_int.hour
+      @request.expiration = Time.now + @request.duration.to_int.minutes
       @request.save!
-      flash[:success] = "Request Created!"
       redirect_to '/dashboard'
+      flash[:success] = "Request Created!"
+
     else
       render 'new'
     end
@@ -53,6 +54,18 @@ class RequestsController < ApplicationController
     @request = Request.find(params[:id])
     @request.update_attributes(request_params)
     redirect_to request_path(@request.id)
+    flash[:success] = "Request updated"
+  end
+
+  def send_acceptance_mail
+    request = params[:request]
+    user = params[:user]
+    if request.need_help 
+      RequestMailer.need_help_requested(user, request).deliver_now
+    else 
+      RequestMailer.giving_help_accepted(user, request).deliver_now
+    request.accepted_by = user.id
+    request.save!
   end
 
 
@@ -61,6 +74,8 @@ class RequestsController < ApplicationController
     @request = Request.find(params[:id])
     @request.delete
     redirect_to '/requests'
+    flash[:success] = "Request Deleted"
+
 
   end
 

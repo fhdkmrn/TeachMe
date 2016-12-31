@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+
+    <p>Hello <%=User.find_by_id(@request.user).name%>! Your request to be tutored in the course <%= Course.find_by_id(@request.course).name%> at <%= @request.location%> has been accepted! In your request, you said you needed tutoring in the following topics: <%= @request.topics%></p>
+    <p>
+      It is now your turn to reach out to the person who has accepted your request, <%= @user.name%>, at their email, which is <%= @user.email%>. Don't forget to requesgivet a rating for the session and some feedback when you two are done! Your tutor would really appreciate it!
+    </p>
+    <p>Have fun and happy teaching! If you have any questions, feel free to reply to this email.</p>
+    <p>Best, <br> TeachMe</p>
+  </body>
+</html>
