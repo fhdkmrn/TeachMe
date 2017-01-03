@@ -1,4 +1,4 @@
-class HomeController < ApplicationController
+class UsersController < ApplicationController
   def show
   	user = User.find_by_id(session[:user_id])
 
@@ -64,6 +64,16 @@ class HomeController < ApplicationController
     end
   end
 
+  def edit
+    @user = User.find(session[:user_id])
+  end
+
+  def update
+    @user = User.find(session[:user_id])
+    @user.update_attributes(user_params)
+    redirect_to user_path(@user.id)
+    flash[:success] = "User updated"
+  end
 
   private
   def user_params

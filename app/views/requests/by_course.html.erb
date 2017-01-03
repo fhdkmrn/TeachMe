@@ -1,3 +1,6 @@
+<% if !@user.starred.include?(course.id.to_s) %>
+<%= link_to "Star Course!", :controller => "course", :action => "star", :course => @course, :user => @user %>
+<% end %>
 <% @requests.each do |request| %>
 <% if request.expiration.future? && request.accepted_by == nil %>
 <% if sessions[:user_id].to_s == request.user.to_s%>

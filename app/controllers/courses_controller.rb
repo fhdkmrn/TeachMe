@@ -21,6 +21,13 @@ class CoursesController < ApplicationController
   def edit
   end
 
+  def star
+    @user = params[:user]
+    @course = params[:course]
+    @user.starred.append(@course.id.to_s)
+    @user.save!
+    redirect_to :back
+
   # POST /courses
   # POST /courses.json
   def create

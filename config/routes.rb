@@ -5,24 +5,24 @@ Rails.application.routes.draw do
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')
   get 'signout', to: 'sessions#destroy', as: 'signout'
-  get 'signup', to: 'home#create', :as => :user
-  post 'signup', to: 'home#new'
+  get 'signup', to: 'users#create', :as => :user
+  post 'signup', to: 'users#new'
   get 'dashboard', to: 'main#dashboard', :as => :dashboard
   get 'search', to: 'main#search', :as => :search
 
   resources :sessions, only: [:create, :destroy]
-  resource :home, only: [:show]
+  resources :users
 
-  root to: "home#show"
+  root to: "users#show"
 
   get 'requests', to: 'requests#index'
   resources :requests
   get 'request/:id', to: 'requests#show', as: :request_path
-  get 'course_requests/:id', to: 'requests#by_course'
+  get 'course_requests/:id', to: 'requests#by_course', as: :course_requests_path
   get :send_acceptance_mail, to: 'requests#send_acceptance_mail', as: :send_acceptance_mail
 
-  get 'users/:id', to 'home#others'
-  get 'users/my_profile', to: 'home#profile'
+  get 'users/:id', to: 'users#others', as: :user_path
+  get 'users/my_profile', to: 'users#profile'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
