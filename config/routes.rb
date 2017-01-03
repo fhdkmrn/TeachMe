@@ -21,6 +21,8 @@ Rails.application.routes.draw do
   get 'course_requests/:id', to: 'requests#by_course'
   get :send_acceptance_mail, to: 'requests#send_acceptance_mail', as: :send_acceptance_mail
 
+  get 'users/:id', to 'home#others'
+  get 'users/my_profile', to: 'home#profile'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

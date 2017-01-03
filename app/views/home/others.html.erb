@@ -1,0 +1,28 @@
+
+  	<head>
+		<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<title>TeachMe</title>
+		<link href="https://fonts.googleapis.com/css?family=Graduate|Montserrat:400,700" rel="stylesheet">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+	</head>
+<%= @user.name %> 
+<% @requests.each do |request| %>
+Active Requests: 
+<% if request.expiration.future? && request.accepted_by == nil %>
+<%= Course.find_by_id(request.course).name %> <%= request.description %>  <%= request.expiration%>    
+<%= Course.find_by_id(request.course).name %> <%= request.description %> <%= User.find_by_id(request.user).name%> <%= request.expiration%>      <%= link_to "Accept Request", :controller => "requests", :action => "send_acceptance_mail", :request => @request, :user => @user %>
+<% end %>
+Expired Requests
+<% if !expiration.expiration.future! && request.accepted_by == nil %>
+<%= Course.find_by_id(request.course).name %> <%= request.description %>
+<% end %>
+Accepted Requests:
+<% if request.accepted_by != nil %>
+<%= Course.find_by_id(request.course).name %> <%= request.description %> <%= User.find_by_id(request.accepted_by).name %>
+
+<% end %>
+<% end %>
