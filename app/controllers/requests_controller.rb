@@ -65,8 +65,8 @@ class RequestsController < ApplicationController
   end
 
   def send_acceptance_mail
-    request = params[:request]
-    user = params[:user]
+    request = Request.find_by_id(params[:request])
+    user = User.find_by_id(params[:user])
     if request.need_help 
       RequestMailer.need_help_requested(user, request).deliver_now
     else 
