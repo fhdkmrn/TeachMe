@@ -20,8 +20,10 @@
 <h5>Study Spot: <strong><%= @user.study_spot %></strong></h5>
 
 <%= render "search/searchbar" %>
+<br>
 <% @user.starred.each do |course| %>
-<%= link_to Course.find_by_id(course.to_int), course_requests_path(course.to_int)%>
+<%= link_to Course.find_by_id(course.to_i).name, course_requests_path(course.to_i)%> <%= link_to "Unstar Course!", :controller => "courses", :action => "unstar", :course => course, :user => @user %>
+<br>
 <% end %>
 <p>Find me in app/views/main/dashboard.html.erb</p>
 </body>

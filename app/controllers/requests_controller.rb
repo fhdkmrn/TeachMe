@@ -16,6 +16,9 @@ class RequestsController < ApplicationController
       redirect_to root_path
     else
       @request = Request.find_by_id(params[:id])
+      if @request == nil
+        render '404.html'
+      end
     end
   end
 
@@ -26,6 +29,9 @@ class RequestsController < ApplicationController
       session[:user_id] = nil
       redirect_to root_path
     else
+      if @course == nil
+        render '404.html'
+      end
       @requests = Request.where(:course => params[:id])
 
     end
@@ -67,6 +73,7 @@ class RequestsController < ApplicationController
       RequestMailer.giving_help_accepted(user, request).deliver_now
     request.accepted_by = user.id
     request.save!
+    end
   end
 
 

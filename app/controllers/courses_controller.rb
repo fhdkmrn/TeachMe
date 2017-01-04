@@ -21,12 +21,22 @@ class CoursesController < ApplicationController
   def edit
   end
 
+  def unstar
+    @user =User.find_by_id(params[:user])
+    @course = Course.find_by_id(params[:course])
+    @user.starred.delete(@course.id.to_s)
+    @user.save!
+    redirect_to :back
+  end
+
   def star
-    @user = params[:user]
-    @course = params[:course]
+    @user =User.find_by_id(params[:user])
+    @course = Course.find_by_id(params[:course])
     @user.starred.append(@course.id.to_s)
     @user.save!
     redirect_to :back
+
+  end
 
   # POST /courses
   # POST /courses.json

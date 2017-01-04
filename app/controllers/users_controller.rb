@@ -42,16 +42,16 @@ class UsersController < ApplicationController
       redirect_to root_path
     else
       if session[:user_id].to_s == params[:id].to_s
-        redirect_to '/my_profile'
+        redirect_to '/users/my_profile'
+
+      else 
+        @otherUser = User.find_by_id(params[:id])
+        if @otherUser == nil
+          render '404.html'
+        else
+          @requests = Request.where(:user => params[:id])
+        end
       end
-      # if User.find_by_id(params[:id]).nil?
-      #   render '404.html'
-      # else
-      @otherUser = User.find_by_id(params[:id])
-      if @otherUser != nil
-        redirect_to '/my_profile'
-      end
-      @requests = Request.where(:user => params[:id])
       # end
     end
   end

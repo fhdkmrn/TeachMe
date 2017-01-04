@@ -11,22 +11,27 @@
 	</head>
 <%= @user.name %> 
 <br/>
-<% @requests.each do |request| %>
 <b> Active Requests:  </b>
+<% @requests.each do |request| %>
 <% if request.expiration.future? && request.accepted_by == nil %>
 <%= Course.find_by_id(request.course).name %> <%= request.description %>  <%= request.expiration%>    
 <%= link_to "Edit", edit_request_path(request.id), :class=> "btn btn-primary" %>
 
 <%= link_to "Delete", request_path(request.id), :method=> :delete, :class=> "btn btn-danger", :data => {:confirm => 'Are you sure you want to delete this request??'} %>
 <% end %>
+<% end %>
 </br>
 <b> Expired Requests: </b>
 </br>
+<% @requests.each do |request| %>
 <% if !request.expiration.future? && request.accepted_by == nil %>
 <%= Course.find_by_id(request.course).name %> <%= request.description %>
+<br>
+<% end %>
 <% end %>
 </br>
 <b> Accepted Requests: </b>
+<% @requests.each do |request| %>
 <% if request.accepted_by != nil %>
 <%= Course.find_by_id(request.course).name %> <%= request.description %> <%= User.find_by_id(request.accepted_by).name %>
 </br>

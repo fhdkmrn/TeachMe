@@ -18,12 +18,15 @@ Rails.application.routes.draw do
   get 'requests', to: 'requests#index'
   resources :requests
   get 'request/:id', to: 'requests#show', as: :request_path
-  get 'course_requests/:id', to: 'requests#by_course', as: :course_requests_path
+  get 'course_requests/:id', to: 'requests#by_course', as: :course_requests
   get :send_acceptance_mail, to: 'requests#send_acceptance_mail', as: :send_acceptance_mail
 
   get 'users/edit', to: 'users#edit', as: :edit_user
+  patch 'users/signup/:id', to: 'users#update', as: :update_user
   get 'users/my_profile', to: 'users#profile'
   get 'users/:id', to: 'users#others', as: :user_path
+  get :star, to: 'courses#star', as: :star
+  get :unstar, to: 'courses#unstar', as: :unstar
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

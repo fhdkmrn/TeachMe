@@ -1,5 +1,9 @@
-<% if !@user.starred.include?(course.id.to_s) %>
-<%= link_to "Star Course!", :controller => "course", :action => "star", :course => @course, :user => @user %>
+<%= @course.name %>
+<% if !@user.starred.include?(@course.id.to_s) %>
+<%= link_to "Star Course!", :controller => "courses", :action => "star", :course => @course, :user => @user %>
+<% else %>
+<%= link_to "Unstar Course!", :controller => "courses", :action => "unstar", :course => @course, :user => @user %>
+
 <% end %>
 <% @requests.each do |request| %>
 <% if request.expiration.future? && request.accepted_by == nil %>
