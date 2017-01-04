@@ -7,7 +7,7 @@
 <% end %>
 <% @requests.each do |request| %>
 <% if request.expiration.future? && request.accepted_by == nil %>
-<% if sessions[:user_id].to_s == request.user.to_s%>
+<% if session[:user_id].to_s == request.user.to_s%>
 <%= Course.find_by_id(request.course).name %> <%= request.description %> <%= User.find_by_id(request.user).name%> <%= request.expiration%>      <%= link_to "Edit Request", :controller => "requests", :action => "send_acceptance_mail", :request => @request, :user => @user %>
 <%else%>
 <%= Course.find_by_id(request.course).name %> <%= request.description %> <%= User.find_by_id(request.user).name%> <%= request.expiration%>      <%= link_to "Accept Request", :controller => "requests", :action => "send_acceptance_mail", :request => @request, :user => @user %>
