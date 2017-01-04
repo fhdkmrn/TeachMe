@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   get 'search', to: 'main#search', :as => :search
 
   resources :sessions, only: [:create, :destroy]
-  resources :users
+  # resources :users
 
   root to: "users#show"
 
@@ -21,8 +21,9 @@ Rails.application.routes.draw do
   get 'course_requests/:id', to: 'requests#by_course', as: :course_requests_path
   get :send_acceptance_mail, to: 'requests#send_acceptance_mail', as: :send_acceptance_mail
 
-  get 'users/:id', to: 'users#others', as: :user_path
+  get 'users/edit', to: 'users#edit', as: :edit_user
   get 'users/my_profile', to: 'users#profile'
+  get 'users/:id', to: 'users#others', as: :user_path
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

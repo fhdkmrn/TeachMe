@@ -9,12 +9,13 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
 	</head>
-<%= @user.name %> 
+<%= @otherUser.name %> 
+<% if @requests != nil %>
 <% @requests.each do |request| %>
 Active Requests: 
 <% if request.expiration.future? && request.accepted_by == nil %>
 <%= Course.find_by_id(request.course).name %> <%= request.description %>  <%= request.expiration%>    
-<%= Course.find_by_id(request.course).name %> <%= request.description %> <%= User.find_by_id(request.user).name%> <%= request.expiration%>      <%= link_to "Accept Request", :controller => "requests", :action => "send_acceptance_mail", :request => @request, :user => @user %>
+<%= Course.find_by_id(request.course).name %> <%= request.description %> <%= User.find_by_id(request.user).name%> <%= request.expiration%>      <%= link_to "Accept Request", :controller => "requests", :action => "send_acceptance_mail", :request => @request, :user => @otherUser %>
 <% end %>
 Expired Requests
 <% if !expiration.expiration.future! && request.accepted_by == nil %>
@@ -23,6 +24,6 @@ Expired Requests
 Accepted Requests:
 <% if request.accepted_by != nil %>
 <%= Course.find_by_id(request.course).name %> <%= request.description %> <%= User.find_by_id(request.accepted_by).name %>
-
+<% end %>
 <% end %>
 <% end %>

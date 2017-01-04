@@ -10,23 +10,29 @@
     	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
 	</head>
 <%= @user.name %> 
+<br/>
 <% @requests.each do |request| %>
-Active Requests: 
+<b> Active Requests:  </b>
 <% if request.expiration.future? && request.accepted_by == nil %>
 <%= Course.find_by_id(request.course).name %> <%= request.description %>  <%= request.expiration%>    
 <%= link_to "Edit", edit_request_path(request.id), :class=> "btn btn-primary" %>
 
 <%= link_to "Delete", request_path(request.id), :method=> :delete, :class=> "btn btn-danger", :data => {:confirm => 'Are you sure you want to delete this request??'} %>
 <% end %>
-Expired Requests
-<% if !expiration.expiration.future! && request.accepted_by == nil %>
+</br>
+<b> Expired Requests: </b>
+</br>
+<% if !request.expiration.future? && request.accepted_by == nil %>
 <%= Course.find_by_id(request.course).name %> <%= request.description %>
 <% end %>
-Accepted Requests:
+</br>
+<b> Accepted Requests: </b>
 <% if request.accepted_by != nil %>
 <%= Course.find_by_id(request.course).name %> <%= request.description %> <%= User.find_by_id(request.accepted_by).name %>
+</br>
 
 <% end %>
 <% end %>
-<%= link_to "Edit User", edit_user_path(session[:user_id]), :class=> "btn btn-primary"%>
+</br>
+<%= link_to "Edit User", edit_user_path, :class=> "btn btn-primary"%>
 

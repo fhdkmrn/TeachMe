@@ -40,15 +40,19 @@ class UsersController < ApplicationController
     if @user == nil or @user.year == nil or @user.major == ""
       session[:user_id] = nil
       redirect_to root_path
-      if session[:user_id].to_s == params[:id].to_s:
+    else
+      if session[:user_id].to_s == params[:id].to_s
         redirect_to '/my_profile'
       end
-      if User.find_by_id(params[:id]).nil?
-        render '404.html'
-      else
-        @user = User.find_by_id(params[:id])
-        @requests = Requests.where(:user => params[:id])
+      # if User.find_by_id(params[:id]).nil?
+      #   render '404.html'
+      # else
+      @otherUser = User.find_by_id(params[:id])
+      if @otherUser != nil
+        redirect_to '/my_profile'
       end
+      @requests = Request.where(:user => params[:id])
+      # end
     end
   end
 
@@ -58,9 +62,9 @@ class UsersController < ApplicationController
 
     if @user == nil or @user.year == nil or @user.major == ""
       session[:user_id] = nil
-      redirect_to root_path
+      redirect_to 'root_path'
     else
-      @requests = Requests.where(:user => session[:user_id])
+      @requests = Request.where(:user => session[:user_id])
     end
   end
 
