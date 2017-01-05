@@ -73,6 +73,7 @@ class RequestsController < ApplicationController
       RequestMailer.giving_help_accepted(user, request).deliver_now
     request.accepted_by = user.id
     request.save!
+    redirect_to root_path
     end
   end
 
