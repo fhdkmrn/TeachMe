@@ -1,3 +1,5 @@
+
+<body>
 <nav class='navbar navbar-default' role='navigation'>
 <div class='container-fluid'>
 <!-- Brand and toggle get grouped for better mobile display -->
@@ -15,7 +17,6 @@
 </a>
 <h4 style="margin-top:15px"> TeachMe </h4>
 </div>
-
 </div>
 
 <div class='form-group col-xs-4'>
@@ -30,8 +31,23 @@
 <ul class='nav navbar-nav navbar-right'>
 <% if current_user %>
 <li>
-<a class="navbar-link"><%= current_user.email %></a>
+<div class="dropdown" style="margin-top:15px">
+  <a data-toggle="dropdown"><%= current_user.email %>
+  <span class="caret"></span></a>
+  <ul class="dropdown-menu">
+    <li><a href="/courses">Courses</a></li>
+    <li><a href="/users/my_profile">Profile</a></li>
+    <li><a href="/requests">Requests</a></li>
+    <li><a href="/requests/new">Create Request</a></li>
+
+
+  </ul>
+</div>
 </li>
+<!-- <li
+<a class="navbar-link"><%= current_user.email %></a>
+</li> -->
+
 <li> <%= link_to "Sign out", signout_path, id: "sign_out" %>
 
 </li>
@@ -53,6 +69,6 @@
   <%= notice %>
 </div>
 <% end %>
-
+</body>
 
 
