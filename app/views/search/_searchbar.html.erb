@@ -1,8 +1,8 @@
 <script>
-// if (typeof jQuery != 'undefined') {
-//   // jQuery is loaded => print the version
-//   alert(jQuery.fn.jquery);
-// }
+if (typeof jQuery != 'undefined') {
+  // jQuery is loaded => print the version
+  alert(jQuery.fn.jquery);
+}
 
   $(function() {
       $( "#books-search-txt" ).autocomplete({
@@ -28,7 +28,7 @@
 
 
 <div class="books-search">
-  <input type="text" id="books-search-txt" autofocus>
+  <input type="text" id="books-search-txt">
   <div class="results" id="books-search-results">
   </div>
 </div>

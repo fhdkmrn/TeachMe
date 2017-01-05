@@ -10,6 +10,7 @@ class MainController < ApplicationController
   end
 
   def search
+    puts("HELLAR")
     respond_to do |format|
       format.json {render :json => Course.text_search(params[:term])}
     end
