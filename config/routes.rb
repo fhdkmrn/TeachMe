@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   get 'users/:id', to: 'users#others', as: :user_path
   get :star, to: 'courses#star', as: :star
   get :unstar, to: 'courses#unstar', as: :unstar
+  get "search_course", to: 'courses#search'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

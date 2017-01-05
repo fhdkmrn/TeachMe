@@ -21,6 +21,10 @@ class CoursesController < ApplicationController
   def edit
   end
 
+  def search
+    redirect_to course_requests_path(params[:course])
+  end
+
   def unstar
     @user =User.find_by_id(params[:user])
     @course = Course.find_by_id(params[:course])
