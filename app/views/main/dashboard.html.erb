@@ -23,7 +23,7 @@
 <br>
 <%= form_tag '/search_course', :method => 'get' do %>
     <p>
-        <%= select_tag :course, options_from_collection_for_select(Course.order(:name),:id,:name), include_blank: true %>
+        <%= select_tag :course, options_from_collection_for_select(Course.order(:full_name),:id,:full_name), include_blank: true %>
         <%= submit_tag "Search", :name => nil %>
     </p>
 <% end %>
