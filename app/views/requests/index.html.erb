@@ -9,10 +9,10 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
 	</head>
-
+<%= render 'layouts/header' %>
 <% @requests.each do |request| %>
 <% if request.expiration.future? && request.accepted_by == nil %>
-<% if session[:user_id] == request.user.to_s %>
+<% if session[:user_id].to_s == request.user.to_s %>
 <%= Course.find_by_id(request.course).name %> <%= request.description %> <%= User.find_by_id(request.user).name%> <%= request.expiration%>    
 <%= link_to "Edit", edit_request_path(request.id), :class=> "btn btn-primary" %>
 
@@ -20,7 +20,7 @@
 <%else%>
 
 <%= Course.find_by_id(request.course).name %> <%= request.description %> <%= User.find_by_id(request.user).name%> <%= request.expiration%>  
-<%= link_to "Accept Request", :controller => "requests", :action => "send_acceptance_mail", :request => request, :user => @user, :class=> "btn btn-success" %>    
+<%= link_to "Accept Request", :class=> "btn btn-success",:controller => "requests", :action => "send_acceptance_mail", :request => request, :user => @user %>    
 <% end %>
 <% end %>
 <% end %>

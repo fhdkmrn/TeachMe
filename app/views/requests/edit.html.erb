@@ -11,6 +11,8 @@
     	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="style.css">		
 	</head>
+<%= render 'layouts/header' %>
+
 <%= bootstrap_form_for(@request) do |f| %>
 
   <%= f.select :need_help, [['Looking to be Tutored', true], ['Looking to Tutor Others', false]], :required => true %>
