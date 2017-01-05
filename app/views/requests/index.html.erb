@@ -12,7 +12,7 @@
 <%= render 'layouts/header' %>
 <% @requests.each do |request| %>
 <% if request.expiration.future? && request.accepted_by == nil %>
-<% if session[:user_id] == request.user.to_s %>
+<% if session[:user_id].to_s == request.user.to_s %>
 <%= Course.find_by_id(request.course).name %> <%= request.description %> <%= User.find_by_id(request.user).name%> <%= request.expiration%>    
 <%= link_to "Edit", edit_request_path(request.id), :class=> "btn btn-primary" %>
 
