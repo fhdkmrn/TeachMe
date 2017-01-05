@@ -68,7 +68,7 @@ class RequestsController < ApplicationController
     request = Request.find_by_id(params[:request])
     user = User.find_by_id(params[:user])
     if request.need_help 
-      RequestMailer.need_help_requested(user, request).deliver_now
+      RequestMailer.need_help_accepted(user, request).deliver_now
     else 
       RequestMailer.giving_help_accepted(user, request).deliver_now
     request.accepted_by = user.id
