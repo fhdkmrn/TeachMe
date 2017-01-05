@@ -20,7 +20,19 @@
 <h5>Study Spot: <strong><%= @user.study_spot %></strong></h5>
 
 <%= render "search/searchbar" %>
+<br>
+<%= form_tag '/search_course', :method => 'get' do %>
+    <p>
+        <%= select_tag :course, options_from_collection_for_select(Course.order(:full_title),:id,:full_title), include_blank: true %>
+        <%= submit_tag "Search", :name => nil %>
+    </p>
+<% end %>
 
+<br>
+<% @user.starred.each do |course| %>
+<%= link_to Course.find_by_id(course.to_i).name, course_requests_path(course.to_i)%> <%= link_to "Unstar Course!", :controller => "courses", :action => "unstar", :course => course, :user => @user %>
+<br>
+<% end %>
 <p>Find me in app/views/main/dashboard.html.erb</p>
 </body>
 </html>
