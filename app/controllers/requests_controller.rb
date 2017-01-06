@@ -67,6 +67,10 @@ class RequestsController < ApplicationController
   def send_acceptance_mail
     request = Request.find_by_id(params[:request])
     user = User.find_by_id(params[:user])
+    @feedback = Feedback.new
+    @feedback.tutor = user.id
+    @feedback.tutoree = request.user
+    @feedback.save!
     if request.need_help 
       RequestMailer.need_help_accepted(user, request).deliver_now
     else 
@@ -77,7 +81,6 @@ class RequestsController < ApplicationController
     redirect_to root_path
 
   end
-
 
 
   def destroy
