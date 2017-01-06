@@ -1,3 +1,4 @@
+
 <script>
 // if (typeof jQuery != 'undefined') {
 //   // jQuery is loaded => print the version
@@ -8,7 +9,6 @@
       $( "#books-search-txt" ).autocomplete({
         source: "/search",
         appendTo: '#books-search-results',
-
         select: $.proxy(function(e, ui) {
              $("#books-search-txt").val(ui.item['department'] + " " + ui.item['course_no']);
              return false;
@@ -16,7 +16,7 @@
       }).autocomplete('instance')._renderItem = $.proxy(function(ul, item) {
           var markup = [
             '<span class="title">' + item['department'] + " " + item['course_no'] + ": " + item['name'] + '</span>',
-            // '<span class="title">' + item['name'] +'</span>',
+            '<span class="title">' + item['name'] +'</span>',
           ];
           return $('<li>')
             .append(markup.join(''))
