@@ -33,6 +33,15 @@
 <%= link_to Course.find_by_id(course.to_i).name, course_requests_path(course.to_i)%> <%= link_to "Unstar Course!", :controller => "courses", :action => "unstar", :course => course, :user => @user %>
 <br>
 <% end %>
+<h5> Pending Feedbacks for Tutors </h5>
+<% Feedback.where(tutoree: @user.id).find_each do |feedback| %>
+Tutor Name: <%= User.find_by(id:feedback.tutor).name %>
+<% end %>
+<h5> Pending Feedbacks for People You Tutored </h5>
+<% Feedback.where(tutor: @user.id).find_each do |feedback| %>
+Tutor Name: <%= User.find_by(id:feedback.tutoree).name %>
+<% end %>
+
 <p>Find me in app/views/main/dashboard.html.erb</p>
 </body>
 </html>

@@ -70,6 +70,7 @@ class RequestsController < ApplicationController
     @feedback = Feedback.new
     @feedback.tutor = user.id
     @feedback.tutoree = request.user
+    @feedback.request = request.id
     @feedback.save!
     if request.need_help 
       RequestMailer.need_help_accepted(user, request).deliver_now
