@@ -1,6 +1,5 @@
 class MainController < ApplicationController
 
-
   def dashboard
   	@user = User.find_by_id(session[:user_id])
   	if @user == nil or @user.year == nil or @user.major == ""
@@ -10,7 +9,6 @@ class MainController < ApplicationController
   end
 
   def search
-    puts("HELLAR")
     respond_to do |format|
       format.json {render :json => Course.text_search(params[:term])}
     end
