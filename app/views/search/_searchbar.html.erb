@@ -6,9 +6,9 @@
 // }
 
   $(function() {
-      $( "#books-search-txt" ).autocomplete({
+      $( "#course-search-txt" ).autocomplete({
         source: "/search",
-        appendTo: '#books-search-results',
+        appendTo: '#course-search-results',
         select: $.proxy(function(e, ui) {
              location.href="/courses/" + ui.item.id;
            }, this)
@@ -21,45 +21,10 @@
             .appendTo(ul);
         }, this);
   });
-
-  $( function() {
-    var availableTags = [
-      "ActionScript",
-      "AppleScript",
-      "Asp",
-      "BASIC",
-      "C",
-      "C++",
-      "Clojure",
-      "COBOL",
-      "ColdFusion",
-      "Erlang",
-      "Fortran",
-      "Groovy",
-      "Haskell",
-      "Java",
-      "JavaScript",
-      "Lisp",
-      "Perl",
-      "PHP",
-      "Python",
-      "Ruby",
-      "Scala",
-      "Scheme"
-    ];
-    $( "#tags" ).autocomplete({
-      source: availableTags
-    });
-  } );
 </script>
 
-<div class="ui-widget">
-  <label for="tags">Tags: </label>
-  <input id="tags">
-</div>
-
-<div class="books-search">
-  <input type="text" id="books-search-txt" autofocus>
-  <div class="results" id="books-search-results"></div>
+<div class="course-search">
+  <input type="text" id="course-search-txt" autofocus>
+  <div class="results" id="course-search-results"></div>
 </div>
 <!-- <button type="button" id="buttonclickme">Search</button> -->
