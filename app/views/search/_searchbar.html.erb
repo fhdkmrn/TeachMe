@@ -4,6 +4,10 @@
       $( "#course-search-txt" ).autocomplete({
         source: "/search",
         appendTo: '#course-search-results',
+        messages: {
+            noResults: '',
+            results: function() {}
+        },
         select: $.proxy(function(e, ui) {
              location.href="/courses/" + ui.item.id;
            }, this)
