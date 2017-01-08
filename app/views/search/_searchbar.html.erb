@@ -1,10 +1,5 @@
 
 <script>
-// if (typeof jQuery != 'undefined') {
-//   // jQuery is loaded => print the version
-//   alert(jQuery.fn.jquery);
-// }
-
   $(function() {
       $( "#course-search-txt" ).autocomplete({
         source: "/search",
@@ -14,7 +9,7 @@
            }, this)
       }).autocomplete('instance')._renderItem = $.proxy(function(ul, item) {
           var markup = [
-            '<span class="title">' + item['department'] + " " + item['course_no'] + ": " + item['name'] + '</span>'
+            '<span class="title">' + item['full_title'] + '</span>'
           ];
           return $('<li>')
             .append(markup.join(''))
@@ -27,4 +22,3 @@
   <input type="text" id="course-search-txt" autofocus>
   <div class="results" id="course-search-results"></div>
 </div>
-<!-- <button type="button" id="buttonclickme">Search</button> -->
