@@ -24,8 +24,12 @@
           height: 100px;
         }
 
+      .course-search {
+        width: 100%;
+      }
+
       .course-search input {
-        width: 50%;
+        width: inherit;
         font-size: 1em;
         padding: .5em 1.3em;
         background: transparent;
@@ -40,7 +44,7 @@
 
       // Styles the dropdown
       .course-search .results .ui-widget-content {
-        width: 50%;
+        width: inherit;
         background: #fff;
         font-size: .9em;
         padding: .5em 0;
@@ -80,3 +84,7 @@
 /*
   Searchbar CSS End
 */
+
+.starred-courses span {
+  float:right;
+}

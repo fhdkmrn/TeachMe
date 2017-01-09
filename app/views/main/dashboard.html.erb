@@ -15,6 +15,7 @@
 <body>
 <%= render 'layouts/header' %>
 <div class="container">
+
 	<h5>Name: <strong><%= @user.name %></strong></h5>
 	<h5>Major: <strong><%= @user.major %></strong></h5>
 	<h5>Karma: <strong><%= @user.karma %></strong></h5>
@@ -23,12 +24,22 @@
 	<%= render "search/searchbar" %>
 
 	<br>
-	<br>
-	<% @user.starred.each do |course| %>
-	<%= link_to Course.find_by_id(course.to_i).name, course_path(course.to_i)%> <%= link_to "Unstar Course!", :controller => "courses", :action => "unstar", :course => course, :user => @user %>
-	<br>
-	<% end %>
-	<p>Find me in app/views/main/dashboard.html.erb</p>
+
+	<h4>Starred Courses</h4>
+	<div class="list-group starred-courses">
+		<% @user.starred.each do |course| %>
+			<a class="list-group-item" href="/courses/<%= course.to_i %>">
+				<%= Course.find_by_id(course.to_i).full_title %>
+				<span>Tutors: <%= Request.where({course: course.to_i, need_help: false}).count %> | Tutorees: <%= Request.where({course: course.to_i, need_help: true}).count %> </span>
+			</a>
+			<!-- <%= link_to "Unstar Course!", :controller => "courses", :action => "unstar", :course => course, :user => @user %> -->
+
+		<% end %>
+	</div>
+
+
+
+
 </div>
 </body>
 </html>
