@@ -40,13 +40,13 @@
 <h4> Feedbacks </h4>
 <h5> Pending Feedbacks for Tutors </h5>
 <% Feedback.where(tutoree: @user.id).find_each do |feedback| %>
-<% if feedback.comments != nil %>
+<% if feedback.comments == nil %>
 <% link_to User.find_by(id:feedback.tutor).name, edit_feedback_path(feedback.id) %>
 <% end %>
 <% end %>
 <h5> Pending Feedbacks for People You Tutored </h5>
 <% Feedback.where(tutor: @user.id).find_each do |feedback| %>
-<% if feedback.tutor_comments != nil %>
+<% if feedback.tutor_comments == nil %>
 <%= link_to User.find_by(id:feedback.tutoree).name, edit_feedback_path(feedback.id) %>
 <% end %>
 <% end %>
