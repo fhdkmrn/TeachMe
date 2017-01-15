@@ -22,21 +22,6 @@ class RequestsController < ApplicationController
     end
   end
 
-  def by_course
-    @user = User.find_by_id(session[:user_id])
-    @course = Course.find_by_id(params[:id])
-    if @user == nil or @user.year == nil or @user.major == ""
-      session[:user_id] = nil
-      redirect_to root_path
-    else
-      if @course == nil
-        render '404.html'
-      end
-      @requests = Request.where(:course => params[:id])
-
-    end
-  end 
-
   def create
     @request = Request.new(request_params)
     if @request

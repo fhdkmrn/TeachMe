@@ -18,3 +18,9 @@ h4 {
   font-size: 30px;
   color: #D5B942;
 }
+
+.scrollable-menu {
+    height: auto;
+    max-height: 200px;
+    overflow-x: hidden;
+}

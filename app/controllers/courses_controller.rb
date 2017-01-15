@@ -10,6 +10,18 @@ class CoursesController < ApplicationController
   # GET /courses/1
   # GET /courses/1.json
   def show
+    @user = User.find_by_id(session[:user_id])
+    @course = Course.find_by_id(params[:id])
+    if @user == nil or @user.year == nil or @user.major == ""
+      session[:user_id] = nil
+      redirect_to root_path
+    else
+      if @course == nil
+        render '404.html'
+      end
+      @requests = Request.where(:course => params[:id])
+
+    end
   end
 
   # GET /courses/new

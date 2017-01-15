@@ -1,22 +1,19 @@
+
 <script>
-// if (typeof jQuery != 'undefined') {
-//   // jQuery is loaded => print the version
-//   alert(jQuery.fn.jquery);
-// }
-
   $(function() {
-      $( "#books-search-txt" ).autocomplete({
+      $( "#course-search-txt" ).autocomplete({
         source: "/search",
-        appendTo: '#books-search-results',
-
+        appendTo: '#course-search-results',
+        messages: {
+            noResults: '',
+            results: function() {}
+        },
         select: $.proxy(function(e, ui) {
-             $("#books-search-txt").val(ui.item['department'] + " " + ui.item['course_no']);
-             return false;
+             location.href="/courses/" + ui.item.id;
            }, this)
       }).autocomplete('instance')._renderItem = $.proxy(function(ul, item) {
           var markup = [
-            '<span class="title">' + item['department'] + " " + item['course_no'] + ": " + item['name'] + '</span>',
-            // '<span class="title">' + item['name'] +'</span>',
+            '<span class="title">' + item['full_title'] + '</span>'
           ];
           return $('<li>')
             .append(markup.join(''))
@@ -25,10 +22,7 @@
   });
 </script>
 
-
-
-<div class="books-search">
-  <input type="text" id="books-search-txt" autofocus>
-  <div class="results" id="books-search-results"></div>
+<div class="course-search">
+  <input type="text" id="course-search-txt" autofocus>
+  <div class="results" id="course-search-results"></div>
 </div>
-<button type="button" id="buttonclickme">Search</button>

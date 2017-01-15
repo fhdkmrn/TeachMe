@@ -1,0 +1,60 @@
+
+<html>
+		<head>
+		<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<title>TeachMe</title>
+		<link href="https://fonts.googleapis.com/css?family=Graduate|Montserrat:400,700" rel="stylesheet">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+    	<%= stylesheet_link_tag    "main", media: "all", "data-turbolinks-track" => true %>
+		<link rel="stylesheet" href="style.css">
+	</head><%= render 'layouts/header' %>
+<body>
+
+
+<%= @course.name %>
+<% if !@user.starred.include?(@course.id.to_s) %>
+<%= link_to "Star Course!", :controller => "courses", :action => "star", :course => @course, :user => @user %>
+<% else %>
+<%= link_to "Unstar Course!", :controller => "courses", :action => "unstar", :course => @course, :user => @user %>
+<% end %>
+<br>
+Available Tutors
+<% @requests.each do |request| %>
+<br>
+<% if !request.need_help %>
+<% if request.expiration.future? && request.accepted_by == nil %>
+<% if session[:user_id].to_s == request.user.to_s%>
+<%= Course.find_by_id(request.course).name %> <%= request.description %>  <%= request.expiration%>
+<%= link_to "Edit", edit_request_path(request.id), :class=> "btn btn-primary" %>
+
+<%= link_to "Delete", request_path(request.id), :method=> :delete, :class=> "btn btn-danger", :data => {:confirm => 'Are you sure you want to delete this request??'} %>
+<%else%>
+<%= Course.find_by_id(request.course).name %> <%= request.description %> <%= User.find_by_id(request.user).name%> <%= request.expiration%>      <%= link_to "Accept Request", :controller => "requests", :action => "send_acceptance_mail", :request => @request, :user => @user %>
+<% end %>
+<% end %>
+<% end %>
+<% end %>
+<br>
+Students looking for Help
+<% @requests.each do |request| %>
+<br>
+<% if request.need_help %>
+<% if request.expiration.future? && request.accepted_by == nil %>
+<% if session[:user_id].to_s == request.user.to_s%>
+<%= Course.find_by_id(request.course).name %> <%= request.description %>  <%= request.expiration%>
+<%= link_to "Edit", edit_request_path(request.id), :class=> "btn btn-primary" %>
+
+<%= link_to "Delete", request_path(request.id), :method=> :delete, :class=> "btn btn-danger", :data => {:confirm => 'Are you sure you want to delete this request??'} %>
+<%else%>
+<%= Course.find_by_id(request.course).name %> <%= request.description %> <%= User.find_by_id(request.user).name%> <%= request.expiration%>      <%= link_to "Accept Request", :controller => "requests", :action => "send_acceptance_mail", :request => @request, :user => @user %>
+<% end %>
+<% end %>
+<% end %>
+<% end %>
+</div>
+</body>
+</html>
