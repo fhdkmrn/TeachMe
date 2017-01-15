@@ -33,7 +33,7 @@ Available Tutors
 
 <%= link_to "Delete", request_path(request.id), :method=> :delete, :class=> "btn btn-danger", :data => {:confirm => 'Are you sure you want to delete this request??'} %>
 <%else%>
-<%= Course.find_by_id(request.course).name %> <%= request.description %> <%= User.find_by_id(request.user).name%> <%= request.expiration%>      <%= link_to "Accept Request", :controller => "requests", :action => "send_acceptance_mail", :request => @request, :user => @user %>
+<%= Course.find_by_id(request.course).name %> <%= request.description %> <%= User.find_by_id(request.user).name%> <%= request.expiration%>      <%= link_to "Accept Request", :controller => "requests", :action => "send_acceptance_mail", :request => request, :user => @user %>
 <% end %>
 <% end %>
 <% end %>
@@ -50,7 +50,7 @@ Students looking for Help
 
 <%= link_to "Delete", request_path(request.id), :method=> :delete, :class=> "btn btn-danger", :data => {:confirm => 'Are you sure you want to delete this request??'} %>
 <%else%>
-<%= Course.find_by_id(request.course).name %> <%= request.description %> <%= User.find_by_id(request.user).name%> <%= request.expiration%>      <%= link_to "Accept Request", :controller => "requests", :action => "send_acceptance_mail", :request => @request, :user => @user %>
+<%= Course.find_by_id(request.course).name %> <%= request.description %> <%= User.find_by_id(request.user).name%> <%= request.expiration%>      <%= link_to "Accept Request", :controller => "requests", :action => "send_acceptance_mail", :request => request, :user => @user %>
 <% end %>
 <% end %>
 <% end %>
