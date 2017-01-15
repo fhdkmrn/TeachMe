@@ -5,7 +5,7 @@ class FeedbacksController < ApplicationController
   end
 
   def create
-    @feedback = Feedback.new(feedback_params)
+    @feedback = Feedback.new(feedbacks_params)
     @feedback.save!
   end
 
