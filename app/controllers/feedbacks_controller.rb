@@ -15,7 +15,7 @@ class FeedbacksController < ApplicationController
 
   def update
     @feedback = Feedback.find(params[:id])
-    @feedback.update_attributes(feedback_params)
+    @feedback.update_attributes(feedbacks_params)
     redirect_to "/dashboard"
     flash[:success] = "Feedback updated"
   end
