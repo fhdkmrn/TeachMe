@@ -1,16 +1,22 @@
 <!DOCTYPE html>
 <html>
   <head>
+
     <title>TeachMe</title>
+
     <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
     <%= csrf_meta_tags %>
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
   </head>
   <body>
     <div>
+      <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>" style="margin-bottom:0px"><%= value %></div>
+      <% end %>
     <%= yield %>
     </div>
   </body>
