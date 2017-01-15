@@ -1,0 +1,31 @@
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<title>TeachMe</title>
+	<link href="https://fonts.googleapis.com/css?family=Graduate|Montserrat:400,700" rel="stylesheet">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="style.css">		
+</head>
+<%= render 'layouts/header' %>
+
+
+<% if current_user.id == @feedback.tutor %>
+<%= bootstrap_form_for(@feedback,:method => :POST) do |f| %>
+<p> Please rate the person you tutored <%= User.find_by(id:@feedback.tutoree).name %>  </p>
+<%= f.select :tutoree_rating, [1,2,3,4,5], :required => true %>
+<p> Please give some comments about the person you tutored, <%= User.find_by(id:@feedback.tutoree).name %> </p>
+  <%= f.text_area :comments, :required => true %>
+  <%= f.submit "Submit Feedback",class: "btn btn-success" %>
+<% end %>
+<% elsif current_user.id == @feedback.tutoree %>
+<%= bootstrap_form_for(@feedback,:method => :POST) do |f| %>
+<p> Please rate your tutor <%= User.find_by(id:@feedback.tutor).name %>  </p>
+<%= f.select :tutor_rating, [1,2,3,4,5], :required => true %>
+<p> Please give some comments about your tutor <%= User.find_by(id:@feedback.tutor).name %> </p>
+  <%= f.text_area :tutoree_comments, :required => true %>
+  <%= f.submit "Submit Feedback",class: "btn btn-success" %>
+<% end %>
+<% end %>

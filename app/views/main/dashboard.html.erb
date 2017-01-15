@@ -1,46 +1,51 @@
 <html>
-		<head>
-		<meta charset="utf-8">
-    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-    	<meta name="viewport" content="width=device-width, initial-scale=1">
+        <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<title>TeachMe</title>
-		<link href="https://fonts.googleapis.com/css?family=Graduate|Montserrat:400,700" rel="stylesheet">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
-    	<%= stylesheet_link_tag    "main", media: "all", "data-turbolinks-track" => true %>
-		<link rel="stylesheet" href="style.css">
-	</head>
+        <title>TeachMe</title>
+        <link href="https://fonts.googleapis.com/css?family=Graduate|Montserrat:400,700" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+        <%= stylesheet_link_tag    "main", media: "all", "data-turbolinks-track" => true %>
+        <link rel="stylesheet" href="style.css">
+    </head>
 
 <body>
 <%= render 'layouts/header' %>
 
 <div class="container">
 
-	<h5>Name: <strong><%= @user.name %></strong></h5>
-	<h5>Major: <strong><%= @user.major %></strong></h5>
-	<h5>Karma: <strong><%= @user.karma %></strong></h5>
-	<h5>Study Spot: <strong><%= @user.study_spot %></strong></h5>
+    <h5>Name: <strong><%= @user.name %></strong></h5>
+    <h5>Major: <strong><%= @user.major %></strong></h5>
+    <h5>Karma: <strong><%= @user.karma %></strong></h5>
+    <h5>Study Spot: <strong><%= @user.study_spot %></strong></h5>
 
-	<%= render "search/searchbar" %>
+    <%= render "search/searchbar" %>
 
-	<br>
+    <br>
 
-	<h4>Starred Courses</h4>
-	<div class="list-group starred-courses">
-		<% @user.starred.each do |course| %>
-			<a class="list-group-item" href="/courses/<%= course.to_i %>">
-				<%= Course.find_by_id(course.to_i).full_title %>
-				<span>Tutors: <%= Request.where({course: course.to_i, need_help: false}).count %> | Tutorees: <%= Request.where({course: course.to_i, need_help: true}).count %> </span>
-			</a>
-			<!-- <%= link_to "Unstar Course!", :controller => "courses", :action => "unstar", :course => course, :user => @user %> -->
+    <h4>Starred Courses</h4>
+    <div class="list-group starred-courses">
+        <% @user.starred.each do |course| %>
+            <a class="list-group-item" href="/courses/<%= course.to_i %>">
+                <%= Course.find_by_id(course.to_i).full_title %>
+                <span>Tutors: <%= Request.where({course: course.to_i, need_help: false}).count %> | Tutorees: <%= Request.where({course: course.to_i, need_help: true}).count %> </span>
+            </a>
+            <!-- <%= link_to "Unstar Course!", :controller => "courses", :action => "unstar", :course => course, :user => @user %> -->
 
-		<% end %>
-	</div>
-
-
-
-
+        <% end %>
+    </div>   
+<h4> Feedback </h4>
+<h5> Pending Feedbacks for Tutors </h5>
+<% Feedback.where(tutoree: @user.id).find_each do |feedback| %>
+<% link_to User.find_by(id:feedback.tutor).name, edit_feedback_path(feedback.id) %>
+<% end %>
+<h5> Pending Feedbacks for People You Tutored </h5>
+<% Feedback.where(tutor: @user.id).find_each do |feedback| %>
+<%= link_to User.find_by(id:feedback.tutoree).name, edit_feedback_path(feedback.id) %>
+<% end %>
 </div>
 </body>
 </html>

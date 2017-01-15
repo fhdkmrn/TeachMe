@@ -22,8 +22,8 @@ class FeedbacksController < ApplicationController
 
 
   private 
-    def feedback_params
+    def feedbacks_params
       #params["request"]["topics"] = params["request"]["topics"].split(",")
-      params.require(:feedback).permit(:tutor,:tutoree, :comments, :tutor_comments)
+      params.require(:feedback).permit(:tutor,:tutoree, :comments, :tutor_comments, :tutoree_comments, :tutor_rating, :tutoree_rating)
     end
 end
