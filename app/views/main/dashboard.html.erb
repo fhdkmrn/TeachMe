@@ -31,12 +31,11 @@
         <% @user.starred.each do |course| %>
             <a class="list-group-item" href="/courses/<%= course.to_i %>">
                 <%= Course.find_by_id(course.to_i).full_title %>
-                <span>Tutors: <%= Request.where({course: course.to_i, need_help: false}).count %> | Tutorees: <%= Request.where({course: course.to_i, need_help: true}).count %> </span>
+                <span>Tutors: <%= Request.where({course: course.to_i, need_help: false, accepted_by: nil}).where("expiration >= ?", Time.now).count %> | Tutorees: <%= Request.where({course: course.to_i, need_help: true, accepted_by: nil}).where("expiration >= ?", Time.now).count %> </span>
             </a>
             <!-- <%= link_to "Unstar Course!", :controller => "courses", :action => "unstar", :course => course, :user => @user %> -->
-
         <% end %>
-    </div>   
+    </div>
 <h4> Feedbacks </h4>
 <h5> Pending Feedbacks for Tutors </h5>
 <% Feedback.where(tutoree: @user.id).find_each do |feedback| %>

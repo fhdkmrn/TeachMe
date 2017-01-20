@@ -57,15 +57,14 @@ class RequestsController < ApplicationController
     @feedback.tutoree = request.user
     @feedback.request = request.id
     @feedback.save!
-    if request.need_help 
+    if request.need_help
       RequestMailer.need_help_accepted(user, request).deliver_now
-    else 
+    else
       RequestMailer.giving_help_accepted(user, request).deliver_now
     end
     request.accepted_by = user.id
     request.save!
     redirect_to root_path
-
   end
 
 
@@ -88,7 +87,7 @@ class RequestsController < ApplicationController
     end
   end
 
-  private 
+  private
     def request_params
       #params["request"]["topics"] = params["request"]["topics"].split(",")
       params.require(:request).permit(:course, :description, :location, :duration, :need_help, :topics)
