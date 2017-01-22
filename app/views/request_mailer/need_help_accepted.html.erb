@@ -5,11 +5,16 @@
   </head>
   <body>
 
-    <p>Hello <%=User.find_by_id(@request.user).name%>! Your request to be tutored in the course <%= Course.find_by_id(@request.course).name%> at <%= @request.location%> has been accepted! In your request, you said you needed tutoring in the following topics: <%= @request.topics%></p>
+    <p>Hello <%= User.find_by_id(@request.user).name %>!</p>
     <p>
-      It is now your turn to reach out to the person who has accepted your request, <%= @user.name%>, at their email, which is <%= @user.email%>. Don't forget to give a rating for the session and some feedback when you two are done! Your tutor would really appreciate it!
+      Your request to be tutored in the course <%= Course.find_by_id(@request.course).name%> has been accepted! In your request, you said you needed tutoring in the following topics: <%= @request.topics%></p>
+    <p>
+      If you wish to accept this request, please confirm at the link: <%= @confirmURL %> </p>
+    <p>
+      Once confirmed, both parties will receive an email containing the contact information of one another.
+      Don't forget to request a rating for the session and some feedback when you two are done!
+      Have fun and happy teaching! If you have any questions, feel free to reply to this email.
     </p>
-    <p>Have fun and happy teaching! If you have any questions, feel free to reply to this email.</p>
     <p>Best, <br> TeachMe</p>
   </body>
 </html>

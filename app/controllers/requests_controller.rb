@@ -1,4 +1,19 @@
+
 class RequestsController < ApplicationController
+
+  # THIS METHOD DOESNT NEED USER TO BE SIGNED IN
+  def confirmRequest
+    request = Request.find_by_id(params[:request])
+    user = User.find_by_id(params[:user])
+    # Move this part to the function that actually writes the emails.
+    request.accepted_by = user.id
+    request.save!
+    # TODO: Send email
+    flash[:success] = "You have accepted the request! Both parties will recieve an email with information on how to contact each other."
+    # Maybe link to its own page? Look at calteachme.com/courses for example
+    redirect_to root_path
+  end
+
   def new
     @user = User.find_by_id(session[:user_id])
     if @user == nil or @user.year == nil or @user.major == ""
@@ -59,11 +74,11 @@ class RequestsController < ApplicationController
     @feedback.save!
     if request.need_help
       RequestMailer.need_help_accepted(user, request).deliver_now
+      flash[:notice] = "Your request to be tutored has been sent. You will recieve an email if the tutor accepts your request."
     else
       RequestMailer.giving_help_accepted(user, request).deliver_now
+      flash[:notice] = "Your request to tutor has been sent. You will recieve an email if the student accepts your request."
     end
-    request.accepted_by = user.id
-    request.save!
     redirect_to root_path
   end
 
@@ -73,8 +88,6 @@ class RequestsController < ApplicationController
     @request.delete
     redirect_to '/requests'
     flash[:success] = "Request Deleted"
-
-
   end
 
   def index

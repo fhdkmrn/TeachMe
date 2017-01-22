@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   get 'request/:id', to: 'requests#show', as: :request_path
   get 'course_requests/:id', to: 'requests#by_course', as: :course_requests
   get :send_acceptance_mail, to: 'requests#send_acceptance_mail', as: :send_acceptance_mail
+  get 'request/confirm/:request/:user', to: "requests#confirmRequest"
 
   get 'users/edit', to: 'users#edit', as: :edit_user
   patch 'users/signup/:id', to: 'users#update', as: :update_user

@@ -1,3 +1,5 @@
+
+
 class MainController < ApplicationController
 
   def dashboard
@@ -6,6 +8,7 @@ class MainController < ApplicationController
   		session[:user_id] = nil
   		redirect_to root_path
   	end
+    
   end
 
   def search
