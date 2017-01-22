@@ -4,7 +4,6 @@ class RequestMailer < ApplicationMailer
 	def need_help_accepted(user, request)
 		@user = user
 		@request = request
-		"The #{animal} #{action} the #{second_animal}"
 		url = "http://cal-teachme.herokuapp.com/request/confirm/#{@request.id}/#{@user.id}"
     @confirmURL = ShortURL.shorten(url, :tinyurl)
 		receiver = User.find_by_id(@request.user).email
