@@ -1,4 +1,3 @@
-
 class RequestsController < ApplicationController
 
   # THIS METHOD DOESNT NEED USER TO BE SIGNED IN
