@@ -4,9 +4,8 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-
     <p>
-      Hello <%= @user2.name %>! Your request for <%= Course.find_by_id(@request.course).name%> has been accepted! The contact information is below.
+      Hello <%= @user2.name %>! You have been matched for a session in the course <%= Course.find_by_id(@request.course).name%>! The contact information is below.
     </p>
     <p>
       <strong><%= @user1.name %></strong>
