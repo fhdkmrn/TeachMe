@@ -17,11 +17,12 @@
 
 <div class="container">
 
-    <h5>Name: <strong><%= @user.name %></strong></h5>
+<!--     <h5>Name: <strong><%= @user.name %></strong></h5>
     <h5>Major: <strong><%= @user.major %></strong></h5>
     <h5>Karma: <strong><%= @user.karma %></strong></h5>
     <h5>Study Spot: <strong><%= @user.study_spot %></strong></h5>
-
+ -->
+    <h6 style="font-size:20px"> Search Courses <h6>
     <%= render "search/searchbar" %>
 
     <br>
@@ -37,18 +38,29 @@
         <% end %>
     </div>
 <h4> Feedbacks </h4>
-<h5> Pending Feedbacks for Tutors </h5>
+
+<div class="row">
+<div class="col-md-6">
+<h6 style="font-size:15px;"> Pending Feedbacks for Tutors </h6>
 <% Feedback.where(tutoree: @user.id).find_each do |feedback| %>
 <% if feedback.comments == nil %>
-<%= link_to User.find_by(id:feedback.tutor).name, edit_feedback_path(feedback.id) %>
+
+    <%= link_to User.find_by(id:feedback.tutor).name, edit_feedback_path(feedback.id), { :class=>"thumbnail", :style=>"width:200px;height:50px;background-color: rgb(238,232,170);" } %>
+
+
 <% end %>
 <% end %>
-<h5> Pending Feedbacks for People You Tutored </h5>
+</div>
+<div class="col-md-6">
+<h6 style="font-size:15px;"> Pending Feedbacks for People You Tutored </h5>
 <% Feedback.where(tutor: @user.id).find_each do |feedback| %>
 <% if feedback.tutor_comments == nil %>
-<%= link_to User.find_by(id:feedback.tutoree).name, edit_feedback_path(feedback.id) %>
+    <%= link_to User.find_by(id:feedback.tutoree).name, edit_feedback_path(feedback.id), { :class=>"thumbnail", :style=>"width:200px;height:50px;background-color: rgb(255,182,193);" } %>
+
 <% end %>
 <% end %>
+</div>
+</div>
 </div>
 </body>
 </html>
