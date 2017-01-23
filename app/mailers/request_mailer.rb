@@ -1,6 +1,16 @@
 require "shorturl"
 
 class RequestMailer < ApplicationMailer
+
+	def send_contact_info(user1, user2, request)
+		@user1 = user1
+		@user2 = user2
+		@request = request
+		receiver = @user2.email
+		subj = "Contact Information for: #{user1.name}"
+		mail(to: receiver, subject: subj)
+	end
+
 	def need_help_accepted(user, request)
 		@user = user
 		@request = request

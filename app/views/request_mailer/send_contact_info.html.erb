@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+
+    <p>
+      Hello <%= @user2.name %>! Your request for <%= Course.find_by_id(@request.course).name%> has been accepted! The contact information is below.
+    </p>
+    <p>
+      <strong><%= @user1.name %></strong>
+      <p><%= @user1.email %></p>
+    </p>
+    <p>
+      Don't forget to request a rating for the session and some feedback when you two are done!
+    </p>
+    <p>Best, <br> TeachMe</p>
+  </body>
+</html>
