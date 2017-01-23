@@ -17,7 +17,7 @@
 <p> Please rate the person you tutored <%= User.find_by(id:@feedback.tutoree).name %>  </p>
 <%= f.select :tutoree_rating, [1,2,3,4,5], :required => true %>
 <p> Please give some comments about the person you tutored, <%= User.find_by(id:@feedback.tutoree).name %> </p>
-  <%= f.text_area :comments, :required => true %>
+  <%= f.text_area :tutor_comments, :required => true %>
   <%= f.submit "Submit Feedback",class: "btn btn-success" %>
 <% end %>
 <% elsif current_user.id == @feedback.tutoree %>
@@ -25,7 +25,7 @@
 <p> Please rate your tutor <%= User.find_by(id:@feedback.tutor).name %>  </p>
 <%= f.select :tutor_rating, [1,2,3,4,5], :required => true %>
 <p> Please give some comments about your tutor <%= User.find_by(id:@feedback.tutor).name %> </p>
-  <%= f.text_area :tutoree_comments, :required => true %>
+  <%= f.text_area :comments, :required => true %>
   <%= f.submit "Submit Feedback",class: "btn btn-success" %>
 <% end %>
 <% end %>
