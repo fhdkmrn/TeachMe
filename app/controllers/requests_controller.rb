@@ -5,7 +5,7 @@ class RequestsController < ApplicationController
     request = Request.find_by_id(params[:request])
     user1 = User.find_by_id(params[:user])
     user2 = User.find_by_id(request.user)
-    request.accepted_by = user.id
+    request.accepted_by = user1.id
     request.save!
     RequestMailer.send_contact_info(user1, user2, request).deliver_now
     RequestMailer.send_contact_info(user2, user1, request).deliver_now
