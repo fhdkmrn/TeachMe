@@ -47,11 +47,19 @@ class RequestsController < ApplicationController
   end
 
   def create
-    #TODO: manually grab the params lol
     #TODO: change the css so the autocompelte dropdown on the request page is dope
-    puts " IN AFRICA"
+    #TODO: handle the case where invalid course is sent through :course
+    puts "IN AFRICA"
     puts request_params[:course]
-    @request = Request.new(request_params)
+    puts Course.where(:full_title => request_params[:course]).first
+    @request = Request.new({
+      :need_help => request_params[:need_help],
+      :course => Course.where(:full_title => request_params[:course]).first.id.to_s,
+      :description => request_params[:description],
+      :topics => request_params[:topics],
+      :duration => request_params[:duration],
+      :location => request_params[:location]
+      })
     if @request
       @request.creation = Time.now
       @request.user = session[:user_id]
