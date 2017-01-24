@@ -3,27 +3,53 @@
 		<meta charset="utf-8">
     	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     	<meta name="viewport" content="width=device-width, initial-scale=1">
-		
+
 		<title>TeachMe</title>
 		<link href="https://fonts.googleapis.com/css?family=Graduate|Montserrat:400,700" rel="stylesheet">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
       <%= stylesheet_link_tag    "main", media: "all", "data-turbolinks-track" => true %>
 
-		<link rel="stylesheet" href="style.css">		
+		<link rel="stylesheet" href="style.css">
 	</head>
-<%= render 'layouts/header' %>
-<h1>Requests#new</h1>
-<p>Find me in app/views/requests/new.html.erb</p>
-		<%= bootstrap_form_for(@request,:method => :POST) do |f| %>
+  <script>
+    $(function() {
+        $( "#course-search-txt" ).autocomplete({
+          source: "/search",
+          appendTo: '#course-search-results',
+          messages: {
+              noResults: '',
+              results: function() {}
+          },
+          select: $.proxy(function(e, ui) {
+               $("#course-search-txt").val(ui.item.full_title);
+               return false;
+             }, this)
+        }).autocomplete('instance')._renderItem = $.proxy(function(ul, item) {
+            var markup = [
+              '<span class="title">' + item['full_title'] + '</span>'
+            ];
+            return $('<li>')
+              .append(markup.join(''))
+              .appendTo(ul);
+          }, this);
+    });
+  </script>
+  <%= render 'layouts/header' %>
+  <div class="container">
+  		<%= bootstrap_form_for(@request, :method => :POST) do |f| %>
 
-		  <%= f.select :need_help, [['Looking to be Tutored', true], ['Looking to Tutor Others', false]], :required => true %>
-  		<%= f.collection_select :course, Course.order(:name),:id,:name, include_blank: true %>
-		  <%= f.text_area :description, :required => true %>
-	  <%= f.text_field :topics, :required => true %>
-		  <%= f.select :duration, [['30 minutes', 30], ['1 hour', 60], ['1.5 hours', 90], ['2 hours', 120], ['2.5 hours', 150], ['3 hours', 180],['3.5 hours', 210], ['4 hours', 240]], :required => true %>
-		  <%= f.text_field :location, :required => true %>
+  		  <%= f.select :need_help, [['Looking to be Tutored', true], ['Looking to Tutor Others', false]], :required => true %>
+    		<!-- <%= f.collection_select :course, Course.order(:name),:id,:name, include_blank: true %> -->
+        <%= f.text_field :course, :required => true, :id => "course-search-txt"%>
+        <!-- <input type="text" id="course-search-txt" name="course" autofocus> -->
+        <div class="results" id="course-search-results"></div>
+  		  <%= f.text_area :description, :required => true %>
+  	    <%= f.text_field :topics, :required => true %>
+  		  <%= f.select :duration, [['30 minutes', 30], ['1 hour', 60], ['1.5 hours', 90], ['2 hours', 120], ['2.5 hours', 150], ['3 hours', 180],['3.5 hours', 210], ['4 hours', 240]], :required => true %>
+  		  <%= f.text_field :location, :required => true %>
 
-		  <%= f.submit "Create Request",class: "btn btn-success" %>
-		<% end %>
+  		  <%= f.submit "Create Request",class: "btn btn-success" %>
+  		<% end %>
+  </div>
 </html>

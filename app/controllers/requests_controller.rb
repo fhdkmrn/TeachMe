@@ -38,6 +38,10 @@ class RequestsController < ApplicationController
   end
 
   def create
+    #TODO: manually grab the params lol
+    #TODO: change the css so the autocompelte dropdown on the request page is dope
+    puts " IN AFRICA"
+    puts request_params[:course]
     @request = Request.new(request_params)
     if @request
       @request.creation = Time.now
