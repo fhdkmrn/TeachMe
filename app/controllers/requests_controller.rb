@@ -59,6 +59,7 @@ class RequestsController < ApplicationController
     else
       @feedback.tutor = request.user
       @feedback.tutoree = user.id
+    end
 
     @feedback.request = request.id
     @feedback.save!
