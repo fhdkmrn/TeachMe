@@ -10,7 +10,6 @@ class RequestsController < ApplicationController
     RequestMailer.send_contact_info(user1, user2, request).deliver_now
     RequestMailer.send_contact_info(user2, user1, request).deliver_now
     flash[:success] = "You have accepted the request! Both parties will recieve an email with information on how to contact each other."
-    # Maybe link to its own page? Look at calteachme.com/courses for example
     redirect_to root_path
   end
 
