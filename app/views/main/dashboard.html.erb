@@ -52,10 +52,10 @@
 <% end %>
 </div>
 <div class="col-md-6">
-<h6 style="font-size:15px;"> Pending Feedbacks for People You Tutored </h5>
+<h6 style="font-size:15px;"> People Yet to Give You Feedback </h5>
 <% Feedback.where(tutor: @user.id).find_each do |feedback| %>
-<% if feedback.tutor_comments == nil %>
-    <%= link_to User.find_by(id:feedback.tutoree).name, edit_feedback_path(feedback.id), { :class=>"thumbnail", :style=>"width:200px;height:50px;background-color: rgb(255,182,193);" } %>
+<% if feedback.comments == nil %>
+    <div class="thumbnail" style="width:200px;height:50px;background-color: rgb(255,182,193);"> <%= User.find_by(id:feedback.tutoree).name %> </div>
 
 <% end %>
 <% end %>

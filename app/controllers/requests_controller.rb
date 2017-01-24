@@ -1,19 +1,4 @@
 class RequestsController < ApplicationController
-
-  # THIS METHOD DOESNT NEED USER TO BE SIGNED IN
-  def confirmRequest
-    request = Request.find_by_id(params[:request])
-    user1 = User.find_by_id(params[:user])
-    user2 = User.find_by_id(request.user)
-    request.accepted_by = user1.id
-    request.save!
-    RequestMailer.send_contact_info(user1, user2, request).deliver_now
-    RequestMailer.send_contact_info(user2, user1, request).deliver_now
-    flash[:success] = "You have accepted the request! Both parties will recieve an email with information on how to contact each other."
-    # Maybe link to its own page? Look at calteachme.com/courses for example
-    redirect_to root_path
-  end
-
   def new
     @user = User.find_by_id(session[:user_id])
     if @user == nil or @user.year == nil or @user.major == ""
@@ -67,19 +52,26 @@ class RequestsController < ApplicationController
   def send_acceptance_mail
     request = Request.find_by_id(params[:request])
     user = User.find_by_id(params[:user])
-    if request.need_help
-      RequestMailer.need_help_accepted(user, request).deliver_now
-      flash[:notice] = "Your request to be tutored has been sent. You will recieve an email if the tutor accepts your request."
-    else
-      RequestMailer.giving_help_accepted(user, request).deliver_now
-      flash[:notice] = "Your request to tutor has been sent. You will recieve an email if the student accepts your request."
-    end
     @feedback = Feedback.new
-    @feedback.tutor = user.id
-    @feedback.tutoree = request.user
+    if request.need_help
+      @feedback.tutor = user.id
+      @feedback.tutoree = request.user
+    else
+      @feedback.tutor = request.user
+      @feedback.tutoree = user.id
+
     @feedback.request = request.id
     @feedback.save!
+
+    if request.need_help 
+      RequestMailer.need_help_accepted(user, request).deliver_now
+    else 
+      RequestMailer.giving_help_accepted(user, request).deliver_now
+    end
+    request.accepted_by = user.id
+    request.save!
     redirect_to root_path
+
   end
 
 
@@ -88,6 +80,8 @@ class RequestsController < ApplicationController
     @request.delete
     redirect_to '/requests'
     flash[:success] = "Request Deleted"
+
+
   end
 
   def index
@@ -100,7 +94,7 @@ class RequestsController < ApplicationController
     end
   end
 
-  private
+  private 
     def request_params
       #params["request"]["topics"] = params["request"]["topics"].split(",")
       params.require(:request).permit(:course, :description, :location, :duration, :need_help, :topics)
