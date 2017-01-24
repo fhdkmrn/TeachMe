@@ -1,4 +1,18 @@
 class RequestsController < ApplicationController
+
+  def confirmRequest
+    request = Request.find_by_id(params[:request])
+    user1 = User.find_by_id(params[:user])
+    user2 = User.find_by_id(request.user)
+    request.accepted_by = user1.id
+    request.save!
+    RequestMailer.send_contact_info(user1, user2, request).deliver_now
+    RequestMailer.send_contact_info(user2, user1, request).deliver_now
+    flash[:success] = "You have accepted the request! Both parties will recieve an email with information on how to contact each other."
+    # Maybe link to its own page? Look at calteachme.com/courses for example
+    redirect_to root_path
+  end
+  
   def new
     @user = User.find_by_id(session[:user_id])
     if @user == nil or @user.year == nil or @user.major == ""
