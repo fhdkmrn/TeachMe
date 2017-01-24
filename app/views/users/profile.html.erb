@@ -31,7 +31,7 @@
 <h6> My Feedback </h6>
 <% @feedbacks.each do |feedback| %>
 Student: <%= User.find_by_id(feedback.tutoree).name %> 
-Rating: <% if feedback.tutor_rating != nil %> <%= feedback.tutor_rating %> <%else%> N/A <%end%>
+Rating: <% if feedback.rating != nil %> <%= feedback.rating %> <%else%> N/A <%end%>
 Comments: <% if feedback.comments != nil %> <%= feedback.comments %> <%else%> N/A <%end%>
 <br>
 <% end %>
