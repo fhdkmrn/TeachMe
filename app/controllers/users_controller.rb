@@ -27,7 +27,7 @@ class UsersController < ApplicationController
   def new
   	user = User.find_by_id(session[:user_id])
   	if user.update_attributes(user_params)
-  		redirect_to '/dashboard'
+  		redirect_to '/my_profile'
   	# else
   	# 	@user = User.find_by_id(session[:user_id])
 
@@ -64,6 +64,7 @@ class UsersController < ApplicationController
       session[:user_id] = nil
       redirect_to 'root_path'
     else
+      @feedbacks = Feedback.where(:tutor => session[:user_id])
       @requests = Request.where(:user => session[:user_id])
     end
   end
@@ -75,8 +76,8 @@ class UsersController < ApplicationController
   def update
     @user = User.find(session[:user_id])
     @user.update_attributes(user_params)
-    redirect_to user_path(@user.id)
-    flash[:success] = "User updated"
+    redirect_to "/users/my_profile"
+    flash[:success] = "Profile information Successfully Updated"
   end
 
   private

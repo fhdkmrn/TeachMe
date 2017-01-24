@@ -5,6 +5,7 @@ class CoursesController < ApplicationController
 
   def index
     @courses = Course.all
+    redirect_to '/dashboard'
   end
 
   # GET /courses/1

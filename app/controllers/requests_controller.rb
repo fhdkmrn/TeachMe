@@ -1,6 +1,5 @@
 class RequestsController < ApplicationController
 
-  # THIS METHOD DOESNT NEED USER TO BE SIGNED IN
   def confirmRequest
     request = Request.find_by_id(params[:request])
     user1 = User.find_by_id(params[:user])
@@ -10,6 +9,17 @@ class RequestsController < ApplicationController
     RequestMailer.send_contact_info(user1, user2, request).deliver_now
     RequestMailer.send_contact_info(user2, user1, request).deliver_now
     flash[:success] = "You have accepted the request! Both parties will recieve an email with information on how to contact each other."
+    # Maybe link to its own page? Look at calteachme.com/courses for example
+    @feedback = Feedback.new
+    if request.need_help
+      @feedback.tutor = user1.id
+      @feedback.tutoree = request.user
+    else
+      @feedback.tutor = request.user
+      @feedback.tutoree = user1.id
+    end
+    @feedback.request = request.id
+    @feedback.save!
     redirect_to root_path
   end
 
@@ -70,18 +80,13 @@ class RequestsController < ApplicationController
   def send_acceptance_mail
     request = Request.find_by_id(params[:request])
     user = User.find_by_id(params[:user])
+
+
     if request.need_help
       RequestMailer.need_help_accepted(user, request).deliver_now
-      flash[:notice] = "Your request to be tutored has been sent. You will recieve an email if the tutor accepts your request."
     else
       RequestMailer.giving_help_accepted(user, request).deliver_now
-      flash[:notice] = "Your request to tutor has been sent. You will recieve an email if the student accepts your request."
     end
-    @feedback = Feedback.new
-    @feedback.tutor = user.id
-    @feedback.tutoree = request.user
-    @feedback.request = request.id
-    @feedback.save!
     redirect_to root_path
   end
 
@@ -91,6 +96,8 @@ class RequestsController < ApplicationController
     @request.delete
     redirect_to '/requests'
     flash[:success] = "Request Deleted"
+
+
   end
 
   def index

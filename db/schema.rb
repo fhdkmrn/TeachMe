@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170115065214) do
+ActiveRecord::Schema.define(version: 20170124001511) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20170115065214) do
     t.text     "tutor_comments"
     t.integer  "tutor_rating"
     t.integer  "tutoree_rating"
+    t.integer  "rating"
   end
 
   create_table "requests", force: :cascade do |t|

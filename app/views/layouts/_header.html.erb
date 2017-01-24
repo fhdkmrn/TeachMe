@@ -30,7 +30,11 @@
 </ul>
 <ul class='nav navbar-nav navbar-right'>
 <% if current_user %>
-<li>
+<li> <a href="/users/my_profile"> Profile </a> </li>
+<li> <a href="/requests"> View Requests </a> </li>
+<li> <a href="/requests/new"> Create Request </a> </li>
+
+<!-- <li>
 <div class="dropdown" style="margin-top:15px">
   <a data-toggle="dropdown"><%= current_user.name %>
   <span class="caret"></span></a>
@@ -43,7 +47,7 @@
 
   </ul>
 </div>
-</li>
+</li> -->
 <!-- <li
 <a class="navbar-link"><%= current_user.email %></a>
 </li> -->
