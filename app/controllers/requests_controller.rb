@@ -10,6 +10,18 @@ class RequestsController < ApplicationController
     RequestMailer.send_contact_info(user2, user1, request).deliver_now
     flash[:success] = "You have accepted the request! Both parties will recieve an email with information on how to contact each other."
     # Maybe link to its own page? Look at calteachme.com/courses for example
+    @feedback = Feedback.new
+    if request.need_help
+      @feedback.tutor = user.id
+      @feedback.tutoree = request.user
+    else
+      @feedback.tutor = request.user
+      @feedback.tutoree = user.id
+    end
+
+    @feedback.request = request.id
+    @feedback.save!
+
     redirect_to root_path
   end
   
@@ -66,17 +78,7 @@ class RequestsController < ApplicationController
   def send_acceptance_mail
     request = Request.find_by_id(params[:request])
     user = User.find_by_id(params[:user])
-    @feedback = Feedback.new
-    if request.need_help
-      @feedback.tutor = user.id
-      @feedback.tutoree = request.user
-    else
-      @feedback.tutor = request.user
-      @feedback.tutoree = user.id
-    end
 
-    @feedback.request = request.id
-    @feedback.save!
 
     if request.need_help 
       RequestMailer.need_help_accepted(user, request).deliver_now
