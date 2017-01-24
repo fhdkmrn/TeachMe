@@ -10,14 +10,18 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="style.css">	
-      <%= stylesheet_link_tag    "main", media: "all", "data-turbolinks-track" => true %>
+      <%= stylesheet_link_tag    "users", media: "all", "data-turbolinks-track" => true %>
 
 	</head>
 
 	<body>
+		<%= render 'layouts/header' %>
+
+		<div class="container">
+			<h6>Edit User</h6>
 
 		<div id="banner">
-		<%= bootstrap_form_for(@user, :method => :POST) do |f| %>
+		<%= bootstrap_form_for(@user) do |f| %>
 		  <%= f.text_field :name %>
 		  <%= f.email_field :email, readonly: true %>
 		  <%= f.text_field :major, :required => true %>
@@ -34,4 +38,6 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
   	</body>
+  </div>
+</div>
 </html>

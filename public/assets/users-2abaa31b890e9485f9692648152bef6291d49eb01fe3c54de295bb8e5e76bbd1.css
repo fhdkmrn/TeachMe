@@ -1,0 +1,37 @@
+/* line 4, /Users/fahadkamran/Documents/PersonalProjects/TeachMe/app/assets/stylesheets/users.css.scss */
+h1 {
+  font-family: 'Graduate', cursive;
+  font-size: 150px;
+  color: #D5B942;
+}
+
+/* line 10, /Users/fahadkamran/Documents/PersonalProjects/TeachMe/app/assets/stylesheets/users.css.scss */
+h6 {
+  font-family: 'Graduate', cursive;
+  font-size: 30px;
+  color: #D5B942;
+}
+
+/* line 16, /Users/fahadkamran/Documents/PersonalProjects/TeachMe/app/assets/stylesheets/users.css.scss */
+h4 {
+  font-family: 'Graduate', cursive;
+  font-size: 30px;
+  color: #D5B942;
+}
+
+/* line 22, /Users/fahadkamran/Documents/PersonalProjects/TeachMe/app/assets/stylesheets/users.css.scss */
+.scrollable-menu {
+  height: auto;
+  max-height: 200px;
+  overflow-x: hidden;
+}
+
+/* line 28, /Users/fahadkamran/Documents/PersonalProjects/TeachMe/app/assets/stylesheets/users.css.scss */
+.col-md-3 {
+  padding: 10px;
+}
+
+/* line 32, /Users/fahadkamran/Documents/PersonalProjects/TeachMe/app/assets/stylesheets/users.css.scss */
+.col-md-6 {
+  padding: 10px;
+}

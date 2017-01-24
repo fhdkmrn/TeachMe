@@ -8,16 +8,42 @@
 		<link href="https://fonts.googleapis.com/css?family=Graduate|Montserrat:400,700" rel="stylesheet">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
-        <%= stylesheet_link_tag    "main", media: "all", "data-turbolinks-track" => true %>
+        <%= stylesheet_link_tag    "users", media: "all", "data-turbolinks-track" => true %>
 
 	</head>
 <%= render 'layouts/header' %>
-<%= @user.name %> 
+<div class="container">
+<div class="row">
+<div class="col-md-3">
+<h6> My Profile </h6>
+<b>Name</b>: <%= @user.name %> 
 <br/>
+<b>Email</b>: <%= @user.email %> 
+<br/>
+<b>Major</b>: <%= @user.major %> 
+<br/>
+<b>Karma</b>: <%= @user.karma %> 
+<br/>
+<%= link_to "Edit User", edit_user_path(@user.id), :class=> "btn btn-primary"%>
+</div>
+
+<div class="col-md-6">
+<h6> My Feedback </h6>
+<% @feedbacks.each do |feedback| %>
+Student: <%= User.find_by_id(feedback.tutoree).name %> 
+Rating: <% if feedback.tutor_rating != nil %> <%= feedback.tutor_rating %> <%else%> N/A <%end%>
+Comments: <% if feedback.comments != nil %> <%= feedback.comments %> <%else%> N/A <%end%>
+<br>
+<% end %>
+
+
+</div>
+<div class="col-md-3">
+<h6> My Requests</h5>
 <b> Active Requests:  </b>
 <% @requests.each do |request| %>
 <% if request.expiration.future? && request.accepted_by == nil %>
-<%= Course.find_by_id(request.course).name %> <%= request.description %>  <%= request.expiration%>    
+<%= Course.find_by_id(request.course).name %> <%= request.description %> 
 <%= link_to "Edit", edit_request_path(request.id), :class=> "btn btn-primary" %>
 
 <%= link_to "Delete", request_path(request.id), :method=> :delete, :class=> "btn btn-danger", :data => {:confirm => 'Are you sure you want to delete this request??'} %>
@@ -38,9 +64,10 @@
 <% if request.accepted_by != nil %>
 <%= Course.find_by_id(request.course).name %> <%= request.description %> <%= User.find_by_id(request.accepted_by).name %>
 </br>
-
 <% end %>
 <% end %>
 </br>
-<%= link_to "Edit User", edit_user_path, :class=> "btn btn-primary"%>
+</div>
+</div>
+</div>
 

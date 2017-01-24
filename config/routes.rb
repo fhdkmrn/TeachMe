@@ -23,8 +23,8 @@ Rails.application.routes.draw do
   get :send_acceptance_mail, to: 'requests#send_acceptance_mail', as: :send_acceptance_mail
   get 'request/confirm/:request/:user', to: "requests#confirmRequest"
 
-  get 'users/edit', to: 'users#edit', as: :edit_user
-  patch 'users/signup/:id', to: 'users#update', as: :update_user
+  get 'users/:id/edit', to: 'users#edit', as: :edit_user
+  patch 'signup.:id', to: 'users#update'
   get 'users/my_profile', to: 'users#profile'
   get 'users/:id', to: 'users#others', as: :user_path
   get :star, to: 'courses#star', as: :star
