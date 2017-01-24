@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   get 'users/edit', to: 'users#edit', as: :edit_user
   patch 'signup.:id', to: 'users#update'
   patch 'users/signup/:id', to: 'users#update', as: :update_user
+
   get 'users/my_profile', to: 'users#profile'
   get 'users/:id', to: 'users#others', as: :user_path
   get :star, to: 'courses#star', as: :star
