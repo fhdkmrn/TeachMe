@@ -44,7 +44,7 @@ Comments: <% if feedback.comments != nil %> <%= feedback.comments %> <%else%> N/
 <b> Active Requests:  </b>
 <% @requests.each do |request| %>
 <% if request.expiration.future? && request.accepted_by == nil %>
- <div class="thumbnail" style="width:200px;height:50px;background-color: rgb(221,160,221);">
+ <div class="thumbnail" style="width:200px;background-color: rgb(221,160,221);">
 
 <%= Course.find_by_id(request.course).name %> <%= request.description %> 
 <%= link_to "Edit", edit_request_path(request.id), :class=> "btn btn-primary" %>
@@ -60,7 +60,7 @@ Comments: <% if feedback.comments != nil %> <%= feedback.comments %> <%else%> N/
 <% @requests.each do |request| %>
 
 <% if !request.expiration.future? && request.accepted_by == nil %>
- <div class="thumbnail" style="width:200px;height:50px;background-color: rgb(221,160,221);">
+ <div class="thumbnail" style="width:200px;background-color: rgb(221,160,221);">
 
 <%= Course.find_by_id(request.course).name %> <%= request.description %>
 </div>
@@ -73,7 +73,7 @@ Comments: <% if feedback.comments != nil %> <%= feedback.comments %> <%else%> N/
 <b> Accepted Requests: </b>
 <% @requests.each do |request| %>
 <% if request.accepted_by != nil %>
- <div class="thumbnail" style="width:200px;height:50px;background-color: rgb(221,160,221);">
+ <div class="thumbnail" style="width:200px;background-color: rgb(221,160,221);">
 
 <%= Course.find_by_id(request.course).name %> <%= request.description %> <%= User.find_by_id(request.accepted_by).name %>
 </div>
