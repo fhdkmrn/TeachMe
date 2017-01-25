@@ -1,4 +1,4 @@
-/* line 3, /Users/jamesjiang/TeachMe/TeachMe/app/assets/stylesheets/application.css.scss */
+/* line 3, /Users/jamesjiang/TeachMe/TeachMe/app/assets/stylesheets/main.css.scss */
 .header {
   display: inline-block;
   width: 200px;
@@ -7,7 +7,7 @@
 /*
   Searchbar CSS
 */
-/* line 14, /Users/jamesjiang/TeachMe/TeachMe/app/assets/stylesheets/application.css.scss */
+/* line 14, /Users/jamesjiang/TeachMe/TeachMe/app/assets/stylesheets/main.css.scss */
 .ui-autocomplete {
   max-height: 100px;
   overflow-y: auto;
@@ -18,14 +18,19 @@
 /* IE 6 doesn't support max-height
  * we use height instead, but this forces the menu to always be this tall
  */
-/* line 23, /Users/jamesjiang/TeachMe/TeachMe/app/assets/stylesheets/application.css.scss */
+/* line 23, /Users/jamesjiang/TeachMe/TeachMe/app/assets/stylesheets/main.css.scss */
 * html .ui-autocomplete {
   height: 100px;
 }
 
-/* line 27, /Users/jamesjiang/TeachMe/TeachMe/app/assets/stylesheets/application.css.scss */
+/* line 27, /Users/jamesjiang/TeachMe/TeachMe/app/assets/stylesheets/main.css.scss */
+.course-search {
+  width: 100%;
+}
+
+/* line 31, /Users/jamesjiang/TeachMe/TeachMe/app/assets/stylesheets/main.css.scss */
 .course-search input {
-  width: 50%;
+  width: inherit;
   font-size: 1em;
   padding: .5em 1.3em;
   background: transparent;
@@ -34,14 +39,14 @@
   outline: none;
 }
 
-/* line 37, /Users/jamesjiang/TeachMe/TeachMe/app/assets/stylesheets/application.css.scss */
+/* line 41, /Users/jamesjiang/TeachMe/TeachMe/app/assets/stylesheets/main.css.scss */
 .course-search input:focus {
   border-color: #A5CEF5;
 }
 
-/* line 42, /Users/jamesjiang/TeachMe/TeachMe/app/assets/stylesheets/application.css.scss */
+/* line 46, /Users/jamesjiang/TeachMe/TeachMe/app/assets/stylesheets/main.css.scss */
 .course-search .results .ui-widget-content {
-  width: 50%;
+  width: inherit;
   background: #fff;
   font-size: .9em;
   padding: .5em 0;
@@ -53,7 +58,7 @@
   overflow-y: auto;
 }
 
-/* line 55, /Users/jamesjiang/TeachMe/TeachMe/app/assets/stylesheets/application.css.scss */
+/* line 59, /Users/jamesjiang/TeachMe/TeachMe/app/assets/stylesheets/main.css.scss */
 .course-search .results .ui-menu-item {
   font-family: 'Helvetica Neue', Helvetica, sans-serif;
   padding: .4em .6em .4em 2.2em;
@@ -64,20 +69,20 @@
   height: 3.5em;
 }
 
-/* line 65, /Users/jamesjiang/TeachMe/TeachMe/app/assets/stylesheets/application.css.scss */
+/* line 69, /Users/jamesjiang/TeachMe/TeachMe/app/assets/stylesheets/main.css.scss */
 .course-search .results .ui-state-focus {
   background: #fff;
   border-left-color: #08c;
   font-weight: 300;
 }
 
-/* line 71, /Users/jamesjiang/TeachMe/TeachMe/app/assets/stylesheets/application.css.scss */
+/* line 75, /Users/jamesjiang/TeachMe/TeachMe/app/assets/stylesheets/main.css.scss */
 .course-search .results .ui-menu-item .title {
   display: block;
   color: #555;
 }
 
-/* line 76, /Users/jamesjiang/TeachMe/TeachMe/app/assets/stylesheets/application.css.scss */
+/* line 80, /Users/jamesjiang/TeachMe/TeachMe/app/assets/stylesheets/main.css.scss */
 .course-search .results .ui-state-focus .title {
   color: #08c;
 }
@@ -85,32 +90,86 @@
 /*
   Searchbar CSS End
 */
-/* line 4, /Users/jamesjiang/TeachMe/TeachMe/app/assets/stylesheets/main.css.scss */
+/* line 88, /Users/jamesjiang/TeachMe/TeachMe/app/assets/stylesheets/main.css.scss */
+.starred-courses span {
+  float: right;
+}
+
+/* line 92, /Users/jamesjiang/TeachMe/TeachMe/app/assets/stylesheets/main.css.scss */
+.h1 {
+  font-family: 'Graduate', cursive;
+  font-size: 150px;
+  color: #D5B942;
+}
+
+/* line 98, /Users/jamesjiang/TeachMe/TeachMe/app/assets/stylesheets/main.css.scss */
+.h5 {
+  font-family: 'Graduate', cursive;
+  font-size: 30px;
+  color: #D5B942;
+}
+
+/* line 104, /Users/jamesjiang/TeachMe/TeachMe/app/assets/stylesheets/main.css.scss */
+.h4 {
+  font-family: 'Graduate', cursive;
+  font-size: 30px;
+  color: #D5B942;
+}
+
+/* line 110, /Users/jamesjiang/TeachMe/TeachMe/app/assets/stylesheets/main.css.scss */
+.scrollable-menu {
+  height: auto;
+  max-height: 200px;
+  overflow-x: hidden;
+}
+
+/* line 116, /Users/jamesjiang/TeachMe/TeachMe/app/assets/stylesheets/main.css.scss */
 h1 {
   font-family: 'Graduate', cursive;
   font-size: 150px;
   color: #D5B942;
 }
 
-/* line 10, /Users/jamesjiang/TeachMe/TeachMe/app/assets/stylesheets/main.css.scss */
+/* line 122, /Users/jamesjiang/TeachMe/TeachMe/app/assets/stylesheets/main.css.scss */
 h5 {
   font-family: 'Graduate', cursive;
   font-size: 30px;
   color: #D5B942;
 }
 
-/* line 16, /Users/jamesjiang/TeachMe/TeachMe/app/assets/stylesheets/main.css.scss */
+/* line 128, /Users/jamesjiang/TeachMe/TeachMe/app/assets/stylesheets/main.css.scss */
 h4 {
   font-family: 'Graduate', cursive;
   font-size: 30px;
   color: #D5B942;
 }
 
-/* line 22, /Users/jamesjiang/TeachMe/TeachMe/app/assets/stylesheets/main.css.scss */
+/* line 134, /Users/jamesjiang/TeachMe/TeachMe/app/assets/stylesheets/main.css.scss */
 .scrollable-menu {
   height: auto;
   max-height: 200px;
   overflow-x: hidden;
+}
+
+/* line 139, /Users/jamesjiang/TeachMe/TeachMe/app/assets/stylesheets/main.css.scss */
+.form-container {
+  background-color: #FAFAD2;
+  height: 150%;
+  border-left: 6px solid green;
+}
+
+/* line 144, /Users/jamesjiang/TeachMe/TeachMe/app/assets/stylesheets/main.css.scss */
+.actual-form {
+  height: 600px;
+  margin-left: 10px;
+  padding-top: 20px;
+  padding-right: 20px;
+}
+
+/* line 150, /Users/jamesjiang/TeachMe/TeachMe/app/assets/stylesheets/main.css.scss */
+.panel {
+  border-width: 3px;
+  border-radius: 12px;
 }
 /* line 1, /Users/jamesjiang/TeachMe/TeachMe/app/assets/stylesheets/scaffolds.scss */
 body {
@@ -176,6 +235,43 @@ div.field, div.actions {
 #error_explanation ul li {
   font-size: 12px;
   list-style: square;
+}
+/* line 4, /Users/jamesjiang/TeachMe/TeachMe/app/assets/stylesheets/users.css.scss */
+h1 {
+  font-family: 'Graduate', cursive;
+  font-size: 150px;
+  color: #D5B942;
+}
+
+/* line 10, /Users/jamesjiang/TeachMe/TeachMe/app/assets/stylesheets/users.css.scss */
+h6 {
+  font-family: 'Graduate', cursive;
+  font-size: 30px;
+  color: #D5B942;
+}
+
+/* line 16, /Users/jamesjiang/TeachMe/TeachMe/app/assets/stylesheets/users.css.scss */
+h4 {
+  font-family: 'Graduate', cursive;
+  font-size: 30px;
+  color: #D5B942;
+}
+
+/* line 22, /Users/jamesjiang/TeachMe/TeachMe/app/assets/stylesheets/users.css.scss */
+.scrollable-menu {
+  height: auto;
+  max-height: 200px;
+  overflow-x: hidden;
+}
+
+/* line 28, /Users/jamesjiang/TeachMe/TeachMe/app/assets/stylesheets/users.css.scss */
+.col-md-3 {
+  padding: 10px;
+}
+
+/* line 32, /Users/jamesjiang/TeachMe/TeachMe/app/assets/stylesheets/users.css.scss */
+.col-md-6 {
+  padding: 10px;
 }
 @charset "UTF-8";
 /*
