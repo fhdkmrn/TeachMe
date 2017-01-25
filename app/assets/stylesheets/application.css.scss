@@ -43,7 +43,7 @@
       }
 
       // Styles the dropdown
-      .course-search .results .ui-widget-content {
+      .results .ui-widget-content {
         width: inherit;
         background: #fff;
         font-size: .9em;
@@ -56,7 +56,7 @@
         overflow-y: auto;
       }
       // Styles each element in the dropdown
-      .course-search .results .ui-menu-item {
+      .results .ui-menu-item {
         font-family: 'Helvetica Neue', Helvetica, sans-serif;
         padding: .4em .6em .4em 2.2em;
         position: relative;
@@ -66,18 +66,18 @@
         height: 3.5em;
       }
       //
-      .course-search .results .ui-state-focus {
+      results .ui-state-focus {
         background: #fff;
         border-left-color: #08c;
         font-weight: 300;
       }
 
-      .course-search .results .ui-menu-item .title {
+      .results .ui-menu-item .title {
         display: block;
         color: #555;
       }
 
-      .course-search .results .ui-state-focus .title {
+      .results .ui-state-focus .title {
         color: #08c;
       }
 

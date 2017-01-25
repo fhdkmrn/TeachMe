@@ -47,11 +47,16 @@ class RequestsController < ApplicationController
   end
 
   def create
-    #TODO: change the css so the autocompelte dropdown on the request page is dope
     #TODO: handle the case where invalid course is sent through :course
     puts "IN AFRICA"
     puts request_params[:course]
     puts Course.where(:full_title => request_params[:course]).first
+    if not Course.exists?(:full_title => request_params[:course])
+      puts "YOLO"
+      flash[:success] = "Please select a valid course!"
+      redirect_to '/requests/new'
+      #TODO: THIS REDIRECT NOT WORKING????
+    end
     @request = Request.new({
       :need_help => request_params[:need_help],
       :course => Course.where(:full_title => request_params[:course]).first.id.to_s,
@@ -69,7 +74,7 @@ class RequestsController < ApplicationController
       flash[:success] = "Request Created!"
 
     else
-      render 'new'
+      redirect_to 'new'
     end
 
   end
