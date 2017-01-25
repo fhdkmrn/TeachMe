@@ -136,3 +136,18 @@ h4 {
     max-height: 200px;
     overflow-x: hidden;
 }
+.form-container {
+    background-color:#FAFAD2;
+    height:150%;
+    border-left: 6px solid green;
+}
+.actual-form {
+    height:600px;
+    margin-left:10px;
+    padding-top:20px;
+    padding-right:20px;
+}
+.panel {
+  border-width:3px;
+  border-radius:12px;
+}

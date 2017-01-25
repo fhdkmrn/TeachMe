@@ -2,58 +2,85 @@
 <%= render 'layouts/header' %>
 <div class="container">
 <div class="row">
-<div class="col-md-3">
+<div class="col-md-3" >
+
 <h6> My Profile </h6>
-<b>Name</b>: <%= @user.name %> 
+<ul class="list-group">
+  <li class="list-group-item"><%= @user.name %> </li>
+  <li class="list-group-item"><%= @user.email %></li>
+  <li class="list-group-item"><%= @user.major %></li>
+   <li class="list-group-item"><%= @user.karma %> Karma </li>
+
+</ul>
+<!-- <b>Name</b>: <%= @user.name %> 
 <br/>
 <b>Email</b>: <%= @user.email %> 
 <br/>
 <b>Major</b>: <%= @user.major %> 
 <br/>
 <b>Karma</b>: <%= @user.karma %> 
-<br/>
-<%= link_to "Edit User", edit_user_path, :class=> "btn btn-primary"%>
+<br/> -->
+<%= link_to "Edit My Information", edit_user_path, :class=> "btn btn-primary"%>
 </div>
 
 <div class="col-md-6">
 <h6> My Feedback </h6>
 <% @feedbacks.each do |feedback| %>
-Student: <%= User.find_by_id(feedback.tutoree).name %> 
+<div class = "panel panel-success" style="width:90%" >
+<div class="panel-heading">Student: <%= User.find_by_id(feedback.tutoree).name %> </div>
+ <div class="panel-body">
 Rating: <% if feedback.rating != nil %> <%= feedback.rating %> <%else%> N/A <%end%>
 Comments: <% if feedback.comments != nil %> <%= feedback.comments %> <%else%> N/A <%end%>
-<br>
+</div>
+</div>
+
 <% end %>
 
 
 </div>
 <div class="col-md-3">
 <h6> My Requests</h5>
+
 <b> Active Requests:  </b>
 <% @requests.each do |request| %>
 <% if request.expiration.future? && request.accepted_by == nil %>
+ <div class="thumbnail" style="width:200px;height:50px;background-color: rgb(221,160,221);">
+
 <%= Course.find_by_id(request.course).name %> <%= request.description %> 
 <%= link_to "Edit", edit_request_path(request.id), :class=> "btn btn-primary" %>
 
 <%= link_to "Delete", request_path(request.id), :method=> :delete, :class=> "btn btn-danger", :data => {:confirm => 'Are you sure you want to delete this request??'} %>
+</div>
 <% end %>
 <% end %>
 </br>
+<div style="margin-top:10px">
 <b> Expired Requests: </b>
 </br>
 <% @requests.each do |request| %>
+
 <% if !request.expiration.future? && request.accepted_by == nil %>
+ <div class="thumbnail" style="width:200px;height:50px;background-color: rgb(221,160,221);">
+
 <%= Course.find_by_id(request.course).name %> <%= request.description %>
+</div>
 <br>
 <% end %>
 <% end %>
+</div>
 </br>
+<div style="margin-top:10px">
 <b> Accepted Requests: </b>
 <% @requests.each do |request| %>
 <% if request.accepted_by != nil %>
+ <div class="thumbnail" style="width:200px;height:50px;background-color: rgb(221,160,221);">
+
 <%= Course.find_by_id(request.course).name %> <%= request.description %> <%= User.find_by_id(request.accepted_by).name %>
+</div>
 </br>
 <% end %>
 <% end %>
+</div>
 </br>
 </div>
 </div>
