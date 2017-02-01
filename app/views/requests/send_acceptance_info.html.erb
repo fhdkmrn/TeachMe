@@ -20,7 +20,7 @@
     <div class="container">
       <h6>Form to Accept Request </h6>
 
-<%= form_tag("/requests", :method => "send_acceptance_mail") do %>
+<%= form_tag("/requests/send_acceptance_mail", :method => :get) do %>
   <%= label_tag("Accpted By:") %>
   <%= number_field_tag(:user, @user.id, :read_only=>true) %>
     <%= label_tag("Request ID:") %>
