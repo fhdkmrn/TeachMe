@@ -22,9 +22,9 @@
 
 <%= form_tag("/requests", :method => "send_acceptance_mail") do %>
   <%= label_tag("Accpted By:") %>
-  <%= text_field_tag(:user, :readonly=>true) %>
+  <%= text_field_tag(:user) %>
     <%= label_tag("Request ID:") %>
-  <%= text_field_tag(:request, :readonly=>true)%>
+  <%= text_field_tag(:request)%>
     <%= label_tag("Location") %>
   <%= text_field_tag(:accepted_location) %>
     <%= label_tag("Any other information?") %>
