@@ -1,0 +1,47 @@
+<html>
+  <head>
+
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>TeachMe</title>
+    <link href="https://fonts.googleapis.com/css?family=Graduate|Montserrat:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">  
+      <%= stylesheet_link_tag    "users", media: "all", "data-turbolinks-track" => true %>
+ 
+  </head>
+
+  <body>
+    <%= render 'layouts/header' %>
+
+    <div class="container">
+      <h6>Form to Accept Request </h6>
+
+    <div id="banner">
+    <% form_tag '/requests/send_acceptance_mail' do %>
+      <%=label_tag 'Request ID' %>
+      <%=number_field_tag 'request'%>
+            <%=label_tag 'Accepted By: ' %>
+      <%=text_field_tag 'user'%>
+            <%=label_tag 'Location' %>
+      <%=text_field_tag 'accepted_location'%>
+      <%=label_tag 'Any information you would like to let this user know?' %>
+      <%=text_field_tag 'info'%>
+
+
+      <div><%= submit_tag 'Confirm' %></div>
+   <% end -%>
+    <br>
+    <br>
+    
+    
+    <!-- jQuery & Bootstrap javascript files -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    </body>
+  </div>
+</div>
+</html>
