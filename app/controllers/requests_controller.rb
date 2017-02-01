@@ -53,30 +53,29 @@ class RequestsController < ApplicationController
     puts Course.where(:full_title => request_params[:course]).first
     if not Course.exists?(:full_title => request_params[:course])
       puts "YOLO"
-      flash[:success] = "Please select a valid course!"
+      flash[:danger] = "Please select a valid course!"
       redirect_to '/requests/new'
-      #TODO: THIS REDIRECT NOT WORKING????
-    end
-    @request = Request.new({
-      :need_help => request_params[:need_help],
-      :course => Course.where(:full_title => request_params[:course]).first.id.to_s,
-      :description => request_params[:description],
-      :topics => request_params[:topics],
-      :duration => request_params[:duration],
-      :location => request_params[:location]
-      })
-    if @request
-      @request.creation = Time.now
-      @request.user = session[:user_id]
-      @request.expiration = Time.now + @request.duration.to_int.minutes
-      @request.save!
-      redirect_to '/dashboard'
-      flash[:success] = "Request Created!"
-
     else
-      redirect_to 'new'
-    end
+      @request = Request.new({
+        :need_help => request_params[:need_help],
+        :course => Course.where(:full_title => request_params[:course]).first.id.to_s,
+        :description => request_params[:description],
+        :topics => request_params[:topics],
+        :duration => request_params[:duration],
+        :location => request_params[:location]
+        })
 
+      if @request
+        @request.creation = Time.now
+        @request.user = session[:user_id]
+        @request.expiration = Time.now + @request.duration.to_int.minutes
+        @request.save!
+        redirect_to '/dashboard'
+        flash[:success] = "Request Created!"
+      else
+        redirect_to 'new'
+      end
+    end
   end
 
   def edit
