@@ -1,16 +1,27 @@
 
 <%= render 'layouts/header' %>
-<% @requests.each do |request| %>
-<% if request.expiration.future? && request.accepted_by == nil %>
-<% if session[:user_id].to_s == request.user.to_s %>
-<%= Course.find_by_id(request.course).name %> <%= request.description %> <%= User.find_by_id(request.user).name%> <%= request.expiration%>    
-<%= link_to "Edit", edit_request_path(request.id), :class=> "btn btn-primary" %>
 
-<%= link_to "Delete", request_path(request.id), :method=> :delete, :class=> "btn btn-danger", :data => {:confirm => 'Are you sure you want to delete this request??'} %>
-<%else%>
+<div class="list-group starred-courses container">
+    <h5>Your Requests</h5>
+    <% @requests.each do |request| %>
+          <% if request.expiration.future? && request.accepted_by == nil %>
+            <div class="list-group-item row">
 
-<%= Course.find_by_id(request.course).name %> <%= request.description %> <%= User.find_by_id(request.user).name%> <%= request.expiration%>  
-<%= link_to "Accept Request", :class=> "btn btn-success",:controller => "requests", :action => "send_acceptance_mail", :request => request, :user => @user %>    
-<% end %>
-<% end %>
-<% end %>
+              <% if session[:user_id].to_s == request.user.to_s%>
+                <div class="col-md-9">
+                  <p><strong><%= User.find_by_id(request.user).name %></strong></p>
+                  <p><%= request.description %></p>
+                  <p><strong>Topics:</strong> <%= request.topics %> </p>
+                  <p><strong>Location: </strong> <%= request.location %></p>
+                  <p><strong>Available until: </strong> <%= request.expiration  %></p>
+                  <p><strong>Created at: </strong> <%= request.created_at %></p>
+                </div>
+                <div class="col-md-3">
+                  <%= link_to "Edit", edit_request_path(request.id), :class=> "btn btn-primary" %>
+                  <%= link_to "Delete", request_path(request.id), :method=> :delete, :class=> "btn btn-danger", :data => {:confirm => 'Are you sure you want to delete this request??'} %>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+    <% end %>
+</div>

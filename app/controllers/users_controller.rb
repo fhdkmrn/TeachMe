@@ -27,7 +27,7 @@ class UsersController < ApplicationController
   def new
   	user = User.find_by_id(session[:user_id])
   	if user.update_attributes(user_params)
-  		redirect_to '/my_profile'
+  		redirect_to root_path
   	# else
   	# 	@user = User.find_by_id(session[:user_id])
 
@@ -44,7 +44,7 @@ class UsersController < ApplicationController
       if session[:user_id].to_s == params[:id].to_s
         redirect_to '/users/my_profile'
 
-      else 
+      else
         @otherUser = User.find_by_id(params[:id])
         if @otherUser == nil
           render '404.html'

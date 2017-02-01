@@ -29,9 +29,13 @@
     <h4>Starred Courses</h4>
     <div class="list-group starred-courses">
         <% @user.starred.each do |course| %>
-            <a class="list-group-item" href="/courses/<%= course.to_i %>">
-                <%= Course.find_by_id(course.to_i).full_title %>
-                <span>Tutors: <%= Request.where({course: course.to_i, need_help: false, accepted_by: nil}).where("expiration >= ?", Time.now).count %> | Tutorees: <%= Request.where({course: course.to_i, need_help: true, accepted_by: nil}).where("expiration >= ?", Time.now).count %> </span>
+            <a class="list-group-item container" href="/courses/<%= course.to_i %>">
+                <div class="col-md-6">
+                  <%= Course.find_by_id(course.to_i).full_title %>
+                </div>
+                <div class="col-md-6">
+                  <span>Tutors: <%= Request.where({course: course.to_i, need_help: false, accepted_by: nil}).where("expiration >= ?", Time.now).count %> | Tutorees: <%= Request.where({course: course.to_i, need_help: true, accepted_by: nil}).where("expiration >= ?", Time.now).count %> </span>
+                </div>
             </a>
             <!-- <%= link_to "Unstar Course!", :controller => "courses", :action => "unstar", :course => course, :user => @user %> -->
         <% end %>
