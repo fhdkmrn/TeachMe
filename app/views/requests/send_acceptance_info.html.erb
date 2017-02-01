@@ -22,11 +22,11 @@
 
 <%= form_tag("/requests", :method => "send_acceptance_mail") do %>
   <%= label_tag("Accpted By:") %>
-  <%= text_field_tag(:user), :disabled=>true %>
+  <%= text_field_tag(:user, :disabled=>true) %>
     <%= label_tag("Request ID:") %>
-  <%= text_field_tag(:request), :disabled=>true %>
+  <%= text_field_tag(:request, :disabled=>true)%>
     <%= label_tag("Location") %>
-  <%= text_field_tag(:location) %>
+  <%= text_field_tag(:accepted_location) %>
     <%= label_tag("Any other information?") %>
   <%= text_area_tag(:info) %>
   <%= submit_tag("Confirm") %>
