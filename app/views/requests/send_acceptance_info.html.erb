@@ -20,18 +20,11 @@
     <div class="container">
       <h6>Form to Accept Request </h6>
 
-    <% form_tag '/requests/send_acceptance_mail' do %>
-      <%=label_tag 'Request ID' %>
-      <%=number_field_tag 'request'%>
-            <%=label_tag 'Accepted By: ' %>
-      <%=text_field_tag 'user'%>
-            <%=label_tag 'Location' %>
-      <%=text_field_tag 'accepted_location'%>
-      <%=label_tag 'Any information you would like to let this user know?' %>
-      <%=text_field_tag 'info'%>
-      <div><%= submit_tag 'Confirm' %></div>
-   <% end -%>
-         <h4>Test</h4>
+<%= form_tag("/requests", :method => "send_acceptance_mail") do %>
+  <%= label_tag("Location") %>
+  <%= text_field_tag(:location) %>
+  <%= submit_tag("Confirm") %>
+<% end %>
 
     <br>
     <br>
