@@ -93,16 +93,23 @@ class RequestsController < ApplicationController
   def send_acceptance_mail
     request = Request.find_by_id(params[:request])
     user = User.find_by_id(params[:user])
+    accepted_location = params[:accepted_location]
+    info = params[:info]
 
 
     if request.need_help
-      RequestMailer.need_help_accepted(user, request).deliver_now
+      RequestMailer.need_help_accepted(user, request, accepted_location, info).deliver_now
     else
-      RequestMailer.giving_help_accepted(user, request).deliver_now
+      RequestMailer.giving_help_accepted(user, request, accepted_location, info).deliver_now
     end
     redirect_to root_path
   end
 
+
+  def send_acceptance_info 
+    @request = Request.find_by_id(params[:request])
+    @user = User.find_by_id(params[:user])
+  end 
 
   def destroy
     @request = Request.find(params[:id])
