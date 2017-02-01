@@ -13,7 +13,11 @@
 
 	</head>
 <%= render 'layouts/header' %>
-
+<div class="container">
+      
+    <div class="panel panel-info">
+      <div class="panel-heading">Edit Request</div>
+      <div class="panel-body">
 <%= bootstrap_form_for(@request) do |f| %>
 
   <%= f.select :need_help, [['Looking to be Tutored', true], ['Looking to Tutor Others', false]], :required => true %>
@@ -25,3 +29,7 @@
 
   <%= f.submit "Edit Request",class: "btn btn-success" %>
 <% end %>
+ </div>
+    </div>
+    </div>
+  </div>
