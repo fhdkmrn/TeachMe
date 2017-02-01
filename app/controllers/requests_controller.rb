@@ -47,12 +47,7 @@ class RequestsController < ApplicationController
   end
 
   def create
-    #TODO: handle the case where invalid course is sent through :course
-    puts "IN AFRICA"
-    puts request_params[:course]
-    puts Course.where(:full_title => request_params[:course]).first
     if not Course.exists?(:full_title => request_params[:course])
-      puts "YOLO"
       flash[:danger] = "Please select a valid course!"
       redirect_to '/requests/new'
     else
