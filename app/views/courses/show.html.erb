@@ -89,7 +89,7 @@
 										<p><strong>Available until: </strong> <%= request.expiration %></p>
 									</div>
 									<div class="col-md-4">
-										<%= link_to "Request to Tutor", {:controller => "requests", :action => "send_acceptance_mail", :request => request, :user => @user}, :class=> "btn btn-info" %>
+										<%= link_to "Request to Tutor", {:controller => "requests", :action => "send_acceptance_info", :request => request, :user => @user}, :class=> "btn btn-info" %>
 									</div>
 									<% end %>
 							</div>
