@@ -39,9 +39,9 @@ Comments: <% if feedback.comments != nil %> <%= feedback.comments %> <%else%> N/
 
 </div>
 <div class="col-md-3">
-<h6> My Requests</h5>
+<h6> My Old Requests</h5>
 
-<b> Active Requests:  </b>
+<!-- <b> Active Requests:  </b>
 <% @requests.each do |request| %>
 <% if request.expiration.future? && request.accepted_by == nil %>
  <div class="thumbnail" style="width:200px;background-color: rgb(221,160,221);">
@@ -53,7 +53,7 @@ Comments: <% if feedback.comments != nil %> <%= feedback.comments %> <%else%> N/
 </div>
 <% end %>
 <% end %>
-</br>
+</br> -->
 <div style="margin-top:10px">
 <b> Expired Requests: </b>
 </br>
