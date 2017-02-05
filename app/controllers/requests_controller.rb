@@ -84,7 +84,7 @@ class RequestsController < ApplicationController
     flash[:success] = "Request updated"
   end
 
-  def send_acceptance_mail requests/send_acceptance_mail
+  def send_acceptance_mail
     request = Request.find_by_id(params[:request])
     user = User.find_by_id(params[:user])
     accepted_location = params[:accepted_location]
