@@ -51,19 +51,27 @@ class RequestsController < ApplicationController
       flash[:danger] = "Please select a valid course!"
       redirect_to '/requests/new'
     else
+      now = Time.now
       @request = Request.new({
         :need_help => request_params[:need_help],
         :course => Course.where(:full_title => request_params[:course]).first.id.to_s,
         :description => request_params[:description],
         :topics => request_params[:topics],
         :duration => request_params[:duration],
-        :location => request_params[:location]
+        :location => request_params[:location],
+        :start_time => DateTime.new(now.year,now.month,now.day,request_params["start_time(4i)"].to_i,request_params["start_time(5i)"].to_i,0,now.zone),
+        # :end_time =>  DateTime.new(now.year,now.month,now.day,request_params["end_time(4i)"].to_i,request_params["end_time(5i)"].to_i,0,now.zone)
+
         })
 
       if @request
         @request.creation = Time.now
         @request.user = session[:user_id]
-        @request.expiration = Time.now + @request.duration.to_int.minutes
+        if @request.start_time == nil
+          @request.expiration = Time.now + @request.duration.to_int.minutes
+        else
+          @request.expiration = @request.start_time + @request.duration.to_int.minutes
+        end
         @request.save!
         redirect_to '/dashboard'
         flash[:success] = "Request Created!"
@@ -127,6 +135,6 @@ class RequestsController < ApplicationController
   private
     def request_params
       #params["request"]["topics"] = params["request"]["topics"].split(",")
-      params.require(:request).permit(:course, :description, :location, :duration, :need_help, :topics)
+      params.require(:request).permit(:course, :description, :location, :duration, :need_help, :topics, :start_time)
     end
 end
