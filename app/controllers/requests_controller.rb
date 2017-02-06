@@ -85,12 +85,12 @@ class RequestsController < ApplicationController
   end
 
   def send_acceptance_mail
+    puts("DADDDY")
     request = Request.find_by_id(params[:request])
     user = User.find_by_id(params[:user])
     accepted_location = params[:accepted_location]
     info = params[:info]
-
-
+    puts("DADDDY")
     if request.need_help
       RequestMailer.need_help_accepted(user, request, accepted_location, info).deliver_now
     else
@@ -100,10 +100,10 @@ class RequestsController < ApplicationController
   end
 
 
-  def send_acceptance_info 
+  def send_acceptance_info
     @request = Request.find_by_id(params[:request])
     @user = User.find_by_id(params[:user])
-  end 
+  end
 
   def destroy
     @request = Request.find(params[:id])

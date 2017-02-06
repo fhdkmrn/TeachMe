@@ -20,8 +20,8 @@ Rails.application.routes.draw do
   resources :requests
   get 'request/:id', to: 'requests#show', as: :request_path
   get 'course_requests/:id', to: 'requests#by_course', as: :course_requests
-  get :send_acceptance_mail, to: 'requests#send_acceptance_mail', as: :send_acceptance_mail
-  get 'request/send_acceptance_mail', to: 'requests#send_acceptance_mail'
+  # get :send_acceptance_mail, to: 'requests#send_acceptance_mail', as: :send_acceptance_mail
+  post 'request/send_acceptance_mail', to: 'requests#send_acceptance_mail'
   get :send_acceptance_info, to: 'requests#send_acceptance_info', as: :send_acceptance_info
   get 'request/confirm/:request/:user', to: "requests#confirmRequest"
 
