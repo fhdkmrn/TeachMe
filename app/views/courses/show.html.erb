@@ -1,102 +1,111 @@
 
 <html>
-		<head>
-		<meta charset="utf-8">
-    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-    	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<title>TeachMe</title>
-		<link href="https://fonts.googleapis.com/css?family=Graduate|Montserrat:400,700" rel="stylesheet">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
-    	<%= stylesheet_link_tag    "main", media: "all", "data-turbolinks-track" => true %>
-		<link rel="stylesheet" href="style.css">
 	</head><%= render 'layouts/header' %>
 <body>
 
 <div class="container">
-	<h5><%= @course.full_title %></h5>
-	<% if !@user.starred.include?(@course.id.to_s) %>
-		<%= link_to "Star Course!", {:controller => "courses", :action => "star", :course => @course, :user => @user}, :class=> "btn btn-success" %>
-	<% else %>
-		<%= link_to "Unstar Course!", {:controller => "courses", :action => "unstar", :course => @course, :user => @user}, :class=> "btn btn-default" %>
-	<% end %>
-	<br>
-	<h4>Available Tutors</h4>
-	<div class="list-group starred-courses container">
-			<% @requests.each do |request| %>
-					<% if !request.need_help %>
-						<% if request.expiration.future? && request.accepted_by == nil %>
-							<div class="list-group-item row">
+	 <div class="panel panel-info">
+      <div class="panel-heading"><%= @course.full_title %>
 
-								<% if session[:user_id].to_s == request.user.to_s%>
-									<div class="col-md-8">
-										<p><strong><%= User.find_by_id(request.user).name %></strong></p>
-										<p><%= request.description %></p>
-										<p><strong>Topics:</strong> <%= request.topics %> </p>
-										<p><strong>Location: </strong> <%= request.location %></p>
-										<p><strong>Available until: </strong> <%= request.expiration  %></p>
-									</div>
-									<div class="col-md-4">
-										<%= link_to "Edit", edit_request_path(request.id), :class=> "btn btn-primary" %>
+      </div>
+      <div class="panel-body">
 
-										<%= link_to "Delete", request_path(request.id), :method=> :delete, :class=> "btn btn-danger", :data => {:confirm => 'Are you sure you want to delete this request??'} %>
-									</div>
-								<%else%>
-									<div class="col-md-8">
-										<p><strong><%= User.find_by_id(request.user).name %></strong></p>
-										<p><%= request.description %></p>
-										<p><strong>Topics:</strong> <%= request.topics %> </p>
-										<p><strong>Location: </strong> <%= request.location %></p>
-										<p><strong>Available until: </strong> <%= request.expiration %></p>
-									</div>
-									<div class="col-md-4">
-										<%= link_to "Request to be Tutored", {:controller => "requests", :action => "send_acceptance_mail", :request => request, :user => @user}, :class=> "btn btn-info" %>
-									</div>
-								<% end %>
-							</div>
-						<% end %>
-					<% end %>
-			<% end %>
-	</div>
+			<ul class="nav nav-tabs">
+			  <li class="active"><a data-toggle="tab" href="#tutor">Tutors</a></li>
+			  <li><a data-toggle="tab" href="#help">Students Seeking Help</a></li>
+			</ul>
 
-	<h4>Students looking for Help</h4>
-	<div class="list-group starred-courses container">
-			<% @requests.each do |request| %>
-					<% if request.need_help %>
-						<% if request.expiration.future? && request.accepted_by == nil %>
-							<div class="list-group-item row">
+			<div class="tab-content">
+			  <div id="tutor" class="tab-pane fade in active">
+			    <h3>Available Tutors: </h3>
+					<div class="list-group starred-courses" style="padding:2%">
+							<% @requests.each do |request| %>
+									<% if !request.need_help %>
+										<% if request.expiration.future? && request.accepted_by == nil %>
+											<div class="list-group-item row">
 
-								<% if session[:user_id].to_s == request.user.to_s%>
-									<div class="col-md-8">
-										<p><strong><%= User.find_by_id(request.user).name %></strong></p>
-										<p><%= request.description %></p>
-										<p><strong>Needs assitance in:</strong> <%= request.topics %> </p>
-										<p><strong>Location: </strong> <%= request.location %></p>
-										<p><strong>Available until: </strong> <%= request.expiration %></p>
-									</div>
-									<div class="col-md-4">
-										<%= link_to "Edit", edit_request_path(request.id), :class=> "btn btn-primary" %>
+												<% if session[:user_id].to_s == request.user.to_s%>
+													<div class="col-md-8">
+														<p><strong><%= User.find_by_id(request.user).name %></strong></p>
+														<p><%= request.description %></p>
+														<p><strong>Topics:</strong> <%= request.topics %> </p>
+														<p><strong>Location: </strong> <%= request.location %></p>
+														<p><strong>Available until: </strong> <%= request.expiration  %></p>
+													</div>
+													<div class="col-md-4">
+														<%= link_to "Edit", edit_request_path(request.id), :class=> "btn btn-primary" %>
 
-										<%= link_to "Delete", request_path(request.id), :method=> :delete, :class=> "btn btn-danger", :data => {:confirm => 'Are you sure you want to delete this request??'} %>
-									</div>
-								<%else%>
-									<div class="col-md-8">
-										<p><strong><%= User.find_by_id(request.user).name %></strong></p>
-										<p><%= request.description %></p>
-										<p><strong>Needs assitance in:</strong> <%= request.topics %> </p>
-										<p><strong>Location: </strong> <%= request.location %></p>
-										<p><strong>Available until: </strong> <%= request.expiration %></p>
-									</div>
-									<div class="col-md-4">
-										<%= link_to "Request to Tutor", {:controller => "requests", :action => "send_acceptance_info", :request => request, :user => @user}, :class=> "btn btn-info" %>
-									</div>
+														<%= link_to "Delete", request_path(request.id), :method=> :delete, :class=> "btn btn-danger", :data => {:confirm => 'Are you sure you want to delete this request??'} %>
+													</div>
+												<%else%>
+													<div class="col-md-8">
+														<p><strong><%= User.find_by_id(request.user).name %></strong></p>
+														<p><%= request.description %></p>
+														<p><strong>Topics:</strong> <%= request.topics %> </p>
+														<p><strong>Location: </strong> <%= request.location %></p>
+														<p><strong>Available until: </strong> <%= request.expiration %></p>
+													</div>
+													<div class="col-md-4">
+														<%= link_to "Request to be Tutored", {:controller => "requests", :action => "send_acceptance_mail", :request => request, :user => @user}, :class=> "btn btn-info" %>
+													</div>
+												<% end %>
+											</div>
+										<% end %>
 									<% end %>
-							</div>
-						<% end %>
-					<% end %>
-			<% end %>
+							<% end %>
+					</div>
+
+			  </div>
+			  <div id="help" class="tab-pane fade">
+			    <h3>Students Seeking Help: </h3>
+					<div class="list-group starred-courses" style="padding:2%">
+							<% @requests.each do |request| %>
+									<% if request.need_help %>
+										<% if request.expiration.future? && request.accepted_by == nil %>
+											<div class="list-group-item row">
+
+												<% if session[:user_id].to_s == request.user.to_s%>
+													<div class="col-md-8">
+														<p><strong><%= User.find_by_id(request.user).name %></strong></p>
+														<p><%= request.description %></p>
+														<p><strong>Needs assitance in:</strong> <%= request.topics %> </p>
+														<p><strong>Location: </strong> <%= request.location %></p>
+														<p><strong>Available until: </strong> <%= request.expiration %></p>
+													</div>
+													<div class="col-md-4">
+														<%= link_to "Edit", edit_request_path(request.id), :class=> "btn btn-primary" %>
+
+														<%= link_to "Delete", request_path(request.id), :method=> :delete, :class=> "btn btn-danger", :data => {:confirm => 'Are you sure you want to delete this request??'} %>
+													</div>
+												<%else%>
+													<div class="col-md-8">
+														<p><strong><%= User.find_by_id(request.user).name %></strong></p>
+														<p><%= request.description %></p>
+														<p><strong>Needs assitance in:</strong> <%= request.topics %> </p>
+														<p><strong>Location: </strong> <%= request.location %></p>
+														<p><strong>Available until: </strong> <%= request.expiration %></p>
+													</div>
+													<div class="col-md-4">
+														<%= link_to "Request to Tutor", {:controller => "requests", :action => "send_acceptance_info", :request => request, :user => @user}, :class=> "btn btn-info" %>
+													</div>
+													<% end %>
+											</div>
+										<% end %>
+									<% end %>
+							<% end %>
 	</div>
+
+			  </div>
+			</div>
+				<% if !@user.starred.include?(@course.id.to_s) %>
+		<%= link_to "Bookmark Course!", {:controller => "courses", :action => "star", :course => @course, :user => @user}, :class=> "btn btn-success" %>
+		<% else %>
+			<%= link_to "Un-Bookmark Course!", {:controller => "courses", :action => "unstar", :course => @course, :user => @user}, :class=> "btn btn-danger" %>
+		<% end %>
+      </div>
+    </div>
+
 </div>
 </body>
 </html>

@@ -1,37 +1,91 @@
 
 <%= render 'layouts/header' %>
 
-<div class="list-group starred-courses container">
-    <h5>Your Requests</h5>
-    <% @requests.each do |request| %>
-          <% if request.expiration.future? && request.accepted_by == nil %>
-            <div class="list-group-item row">
+<div class="container">
 
-              <% if session[:user_id].to_s == request.user.to_s%>
-                <div class="col-md-9">
-                  <p><strong><%= User.find_by_id(request.user).name %></strong></p>
-                  <p><%= request.description %></p>
-                  <p><strong>Class:</strong> <%= Course.find_by_id(request.course).name %> </p>
+  <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#my">My Requests</a></li>
+    <li><a data-toggle="tab" href="#all">All Requests</a></li>
+  </ul>
 
-                  <p><strong>Topics:</strong> <%= request.topics %> </p>
-                  <p><strong>Location: </strong> <%= request.location %></p>
-                  <p><strong>Tutoring Start Time: </strong> 
-                    <% if request.start_time != nil %>
-                    <%= request.start_time.strftime("%a, %B %w, %I:%M %p") %></p>
-                    <% else %>
-                      <%= request.created_at.strftime("%a, %B %w, %I:%M %p") %></p>
-                    <% end %>
-<!--                   <p><strong>Tutoring End Time: </strong>
- -->
-                  <p><strong>Available until: </strong> <%= request.expiration.strftime("%a, %B %w, %I:%M %p")  %></p>
-<!--                   <p><strong>Created at: </strong> <%= request.created_at.strftime("%a, %B %w, %I:%M %p") %></p>
- -->                </div>
-                <div class="col-md-3">
-                  <%= link_to "Edit", edit_request_path(request.id), :class=> "btn btn-primary" %>
-                  <%= link_to "Delete", request_path(request.id), :method=> :delete, :class=> "btn btn-danger", :data => {:confirm => 'Are you sure you want to delete this request??'} %>
+
+<div class="tab-content">
+  <div id="my" class="tab-pane fade in active">
+    <h5>My Requests</h5>
+    <div class="list-group starred-courses" style="margin-left:10px">
+        <% @requests.each do |request| %>
+              <% if request.expiration.future? && request.accepted_by == nil %>
+                <div class="list-group-item row">
+
+                  <% if session[:user_id].to_s == request.user.to_s%>
+                    <div class="col-md-9">
+                      <p><strong><%= User.find_by_id(request.user).name %></strong></p>
+                      <p><%= request.description %></p>
+                      <p><strong>Class:</strong> <%= Course.find_by_id(request.course).name %> </p>
+
+                      <p><strong>Topics:</strong> <%= request.topics %> </p>
+                      <p><strong>Location: </strong> <%= request.location %></p>
+                      <p><strong>Tutoring Start Time: </strong> 
+                        <% if request.start_time != nil %>
+                        <%= request.start_time.strftime("%a, %B %w, %I:%M %p") %></p>
+                        <% else %>
+                          <%= request.created_at.strftime("%a, %B %w, %I:%M %p") %></p>
+                        <% end %>
+    <!--                   <p><strong>Tutoring End Time: </strong>
+     -->
+                      <p><strong>Available until: </strong> <%= request.expiration.strftime("%a, %B %w, %I:%M %p")  %></p>
+    <!--                   <p><strong>Created at: </strong> <%= request.created_at.strftime("%a, %B %w, %I:%M %p") %></p>
+     -->                </div>
+                    <div class="col-md-3">
+                      <%= link_to "Edit", edit_request_path(request.id), :class=> "btn btn-primary" %>
+                      <%= link_to "Delete", request_path(request.id), :method=> :delete, :class=> "btn btn-danger", :data => {:confirm => 'Are you sure you want to delete this request??'} %>
+                    </div>
+                  <% end %>
                 </div>
               <% end %>
-            </div>
-          <% end %>
-    <% end %>
+        <% end %>
+      </div>
+
+
+
+  </div>
+  <div id="all" class="tab-pane fade">
+    <h5>All Requests</h5>
+    <div class="list-group starred-courses" style="margin-left:10px">
+        <% @requests.each do |request| %>
+              <% if request.expiration.future? && request.accepted_by == nil %>
+                <div class="list-group-item row">
+
+                    <div class="col-md-9">
+                      <p><strong><%= User.find_by_id(request.user).name %></strong></p>
+                      <p><%= request.description %></p>
+                      <p><strong>Class:</strong> <%= Course.find_by_id(request.course).name %> </p>
+
+                      <p><strong>Topics:</strong> <%= request.topics %> </p>
+                      <p><strong>Location: </strong> <%= request.location %></p>
+                      <p><strong>Tutoring Start Time: </strong> 
+                        <% if request.start_time != nil %>
+                        <%= request.start_time.strftime("%a, %B %w, %I:%M %p") %></p>
+                        <% else %>
+                          <%= request.created_at.strftime("%a, %B %w, %I:%M %p") %></p>
+                        <% end %>
+    <!--                   <p><strong>Tutoring End Time: </strong>
+     -->
+                      <p><strong>Available until: </strong> <%= request.expiration.strftime("%a, %B %w, %I:%M %p")  %></p>
+    <!--                   <p><strong>Created at: </strong> <%= request.created_at.strftime("%a, %B %w, %I:%M %p") %></p>
+     -->                </div>
+                    <div class="col-md-3">
+                      <%= link_to "Edit", edit_request_path(request.id), :class=> "btn btn-primary" %>
+                      <%= link_to "Delete", request_path(request.id), :method=> :delete, :class=> "btn btn-danger", :data => {:confirm => 'Are you sure you want to delete this request??'} %>
+                    </div>
+                </div>
+              <% end %>
+        <% end %>
+      </div>
+
+
+  </div>
+</div>
+
+
 </div>
