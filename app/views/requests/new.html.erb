@@ -21,7 +21,10 @@
               .append(markup.join(''))
               .appendTo(ul);
           }, this);
+        $('[data-toggle="tooltip"]').tooltip();   
+
     });
+
   </script>
   <%= render 'layouts/header' %>
 
@@ -30,21 +33,36 @@
   <div class="panel-heading">Tutoring Request</div>
   <div class="panel-body">
     <%= bootstrap_form_for(@request, :method => :POST) do |f| %>
+    <a href="#" data-toggle="tooltip" title="Are you looking for a tutor or are you looking for someone to tutor?">?</a>
+
     <%= f.select :need_help, [['Looking to be Tutored', true], ['Looking to Tutor Others', false]], :required => true %>
+
         <!-- <%= f.collection_select :course, Course.order(:name),:id,:name, include_blank: true %> -->
-        <%= f.text_field :course, :required => true, :id => "course-search-txt"%>
+             <a href="#" data-toggle="tooltip" title="Which course are you looking to get tutored in or are you looking to tutor in?">?</a>
+
+         <%= f.text_field :course, :required => true, :id => "course-search-txt"%>
         <!-- <input type="text" id="course-search-txt" name="course" autofocus> -->
         <div class="course-search"> 
         <div class="results" id="course-search-results"></div>
         </div>
+        <a href="#" data-toggle="tooltip" title="Describe what your needs are? Homework and project help? Conceptual help? Exam prep?">?</a>
         <%= f.text_area :description, :required => true %>
+        <a href="#" data-toggle="tooltip" title="What topics from the class do you want to get tutored in?">?</a>
+
         <%= f.text_field :topics, :required => true %>
+        <a href="#" data-toggle="tooltip" title="What time are you available to start the tutoring session?">?</a>
+
         <%= f.time_select :start_time, { minute_step: 15, include_blank: true, ampm: true, order: [:hour, :minute] }, {style:"width:25%; display:inline" }  %>
+        <a href="#" data-toggle="tooltip" title="Until what time are you available for the tutoring session?">?</a>
+
         <%= f.time_select :end_time, { minute_step: 15, include_blank: true, ampm: true, order: [:hour, :minute] }, {style:"width:25%; display:inline" }  %>
 
 <!--         <%= f.time_select :end_time, { minute_step: 15, include_blank: true, ampm: true, order: [:hour, :minute] }, {style:"width:25%; display:inline" }  %>
  -->
+        <a href="#" data-toggle="tooltip" title="Where would you like to do this tutoring session?">?</a>
+
         <%= f.text_field :location, :required => true %>
+
         <%= f.submit "Create Request",class: "btn btn-success" %>
       <% end %>
   </div>
