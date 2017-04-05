@@ -80,6 +80,10 @@ class RequestsController < ApplicationController
 
   def edit
     @request = Request.find(params[:id])
+    if @request.user.to_i != current_user.id
+      flash[:danger] = "You are not authorized to access this page."
+      redirect_to "/"
+    end
   end
 
   def update
