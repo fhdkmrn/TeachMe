@@ -59,8 +59,8 @@ class RequestsController < ApplicationController
         :topics => request_params[:topics],
         # :duration => request_params[:duration],
         :location => request_params[:location],
-        :start_time => DateTime.new(now.year,now.month,now.day,request_params["start_time(4i)"].to_i,request_params["start_time(5i)"].to_i,0,now.zone),
-        :end_time =>  DateTime.new(now.year,now.month,now.day,request_params["end_time(4i)"].to_i,request_params["end_time(5i)"].to_i,0,now.zone)
+        :start_time => DateTime.new(now.year,now.month,now.day,request_params["start_time(4i)"].to_i,request_params["start_time(5i)"].to_i,0),
+        :end_time =>  DateTime.new(now.year,now.month,now.day,request_params["end_time(4i)"].to_i,request_params["end_time(5i)"].to_i,0)
 
         })
 
